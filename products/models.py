@@ -6,6 +6,7 @@ from accounts.models import base_user
 
 class products(models.Model):
     product_id = models.AutoField(primary_key=True) #primary key
+    prodcut_stripe_id = models.TextField(null=False,default='PLACE_HOLDER') #this is where the stripe product id will live fro a product
     prodcut_name = models.TextField(null=False)
     prodcut_link = models.TextField() #^somehow make this so this autogenerates as well
     product_discription = models.TextField()
