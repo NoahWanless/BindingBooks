@@ -19,6 +19,12 @@ import stripe
 from django.conf import settings
 from django.shortcuts import redirect
 from django.views import View
+from django.core.mail import send_mail 
+from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+
 
 from products.models import products
 
@@ -46,3 +52,32 @@ class CreateStripeCheckoutSessionView(View):
 
         )
         return redirect(checkout_session.url) #redirects the user to a stripe hosted url that handles all that stuff
+    
+
+#this is the view that will get loaded when stripe sends us a payload when it knows whether the 
+#transcation has happened or not
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+@method_decorator(csrf_exempt,name='dispatch')
+class StripeWebhookView(View):
+    def post(self,request,format=None):
+        payload=request.body
+        endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_KEY
+        sig_header=request.META["HTTP_STRIPE_SIGNATURE"]
+        event = None
+
+        try:
+            event = stripe.Webhook.construct_event(payload,sig_header,endpoint_secret)
+        except ValueError as e:
+            #this is if the payload we are sending is invalid
+            return HttpResponse(status=400)
+        except stripe.error.SignatureVerificationError as e:
+            #this is if the signature we send is invalid
+            return HttpResponse(status=400)
+        
+        if event["type"] == "checkout.session.completed":
+            print("Payment successful")
+        print("Something happened")
+
+        return HttpResponse(status=200)
+
