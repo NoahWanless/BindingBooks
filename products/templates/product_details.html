@@ -2,4 +2,12 @@
 <html lang="en">
 <head>
 <p>This is a test, please appear</p>
+
+    <form
+          action="{% url 'payments:create-checkout-session' product.product_id %}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Checkout</button>
+
 </head>

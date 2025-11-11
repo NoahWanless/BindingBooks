@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     "accounts",
     "forums",
     "general",
-    'payments.apps.PaymentsConfig', 
-
+    "payments",
 ]
 
 MIDDLEWARE = [
@@ -130,6 +129,12 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+from decouple import config
 
+HOME_DIR = "http://127.0.0.1:8000/"
+
+# Stripe
+STRIPE_SECRET_KEY = config('stripe_test_api_secret_key')
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51SS2L12LulKl7K5WyksMW2rmoLMNnvzuYCwAheWuEnNLbO1T1NGfVbsx90WBEtFA3SDAOxb7xmSuvc68Jj5wuL0X00TyQCVU8u'
+
