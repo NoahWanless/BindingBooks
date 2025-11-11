@@ -5,6 +5,8 @@ black
 django
 python-decouple   <--for getting env vars for secert key 
 stripe
+brew install stripe/stripe-cli/stripe <-- this is for getting messages from the stripe api
+
 
 Model structure:
 if you want to see the model structure see the file/image named model_back in this dicectory
@@ -28,6 +30,13 @@ anny date in the future, like '12/28'
 
 also for like billing info you dont have to bother putting anything really, like 77777 will work for that one
 5 digit billing number
+
+
+
+stripe commands:
+
+stripe logs tail          <--this displays api messages post/gets that stripe gets
+stripe listen --forward-to {insert the url for the webhooks view}
 
 
 
