@@ -1,0 +1,12 @@
+<h1>Forums</h1>
+
+<ul>
+  {% for f in forums %}
+    <li>
+      <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a>
+    </li>
+  {% empty %}
+    <li>No forums yet.</li>
+  {% endfor %}
+  <a href="{% url 'create_forum' %}">+ Create New Forum</a>
+</ul>

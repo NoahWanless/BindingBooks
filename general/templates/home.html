@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Binding Books</title>
-</head>
-<body>
+  </head>
+  <body>
+    <nav>
+      <h2>Title</h2>
+      <ul>
+        <li>
+          {% comment %}add your links here{% endcomment %}
+          <a href="{% url 'forum_list' %}">forums</a>
+        </li>
+        <li>
+          <a href="#">Item 2</a>
+        </li>
+        <li>
+          <a href="#">Item 3</a>
+        </li>
+      </ul>
+    </nav>
     <p>Hello World</p>
-
-
-
-</body>
+  </body>
+</html>
