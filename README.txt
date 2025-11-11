@@ -14,3 +14,10 @@ username: jerry
 password: testpasss123
 
 *note that the password has 3 s's in it*
+
+
+
+
+
+https://onetimesecret.com/en/
+to be used for sharing secret key
