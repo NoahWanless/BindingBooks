@@ -38,7 +38,7 @@ class CreateStripeCheckoutSessionView(View):
             line_items=[
                 {
                     "price_data":{
-                        "product":product.prodcut_stripe_id, #this tells stripe what product we are buying in this session
+                        "product":product.product_stripe_id, #this tells stripe what product we are buying in this session
                         "currency":"usd",
                         "unit_amount": int(product.product_price)*100,
                     },

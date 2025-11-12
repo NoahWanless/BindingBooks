@@ -1,0 +1,23 @@
+This is going to be a tutorial on how to make the set ups to be able to use stripe.
+
+Now i have a mac, and thats all i know how to use so i am unsure how one would do this on windows
+
+first you need to make sure you have the following installed in your virtual env
+stripe
+python-decouple 
+(if you have brew, the last one can be installed with the following command:
+brew install stripe/stripe-cli/stripe
+)
+
+the next thing you are going to need is the keys, if youd like them message me personally
+(me being Noah or Wanless in discord)
+and i can send them to you securily
+but assuming you have them, make sure you have them set as env varsiables on your machine with the names:
+'stripe_test_api_secret_key'
+and
+'stripe_webhook_secret_key'
+
+then that should be the main bits of set up and transactions should work
+
+#NOTE#
+the webhook will NOT work, because that would require me logining into my stripe account on everyones comupters, and thats too much work at the moment

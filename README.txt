@@ -38,7 +38,7 @@ stripe commands:
 stripe logs tail          <--this displays api messages post/gets that stripe gets
 stripe listen --forward-to {insert the url for the webhooks view}
 
-
+stripe listen --forward-to localhost:8000/payments/webhooks/stripe/
 
 
 
