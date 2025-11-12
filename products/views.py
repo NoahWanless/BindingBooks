@@ -5,7 +5,7 @@ from .models import products
 
 
 
-class ProdcutDetailView(DetailView):
+class ProductDetailView(DetailView):
     model = products
     template_name = "product_details.html"
     context_object_name = "product"

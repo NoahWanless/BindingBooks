@@ -6,17 +6,17 @@ from accounts.models import base_user
 
 class products(models.Model):
     product_id = models.AutoField(primary_key=True) #primary key
-    prodcut_stripe_id = models.TextField(null=False,default='PLACE_HOLDER') #this is where the stripe product id will live fro a product
-    prodcut_name = models.TextField(null=False)
-    prodcut_link = models.TextField() #^somehow make this so this autogenerates as well
-    product_discription = models.TextField()
+    product_stripe_id = models.TextField(null=False,default='PLACE_HOLDER') #this is where the stripe product id will live fro a product
+    product_name = models.TextField(null=False)
+    product_link = models.TextField() #^somehow make this so this autogenerates as well
+    product_description = models.TextField()
     product_price = models.FloatField(null=False) #forces a entry to have a price
-    prodcut_tags = models.JSONField(default=list) #tags will go here (this is a generic list of any number of items that you might want to put in)
+    product_tags = models.JSONField(default=list) #tags will go here (this is a generic list of any number of items that you might want to put in)
     product_text = models.TextField() #THIS IS WHERE THE ACTUAL BOOK GOES
     product_images = models.JSONField(default=list) #THIS IS WHAT YOU WOULD USE IF YOU HAD IMAGES INSTEAD OF TEXT
 
     def __str__(self):
-        return f"{self.prodcut_name} for: ${self.product_price}"
+        return f"{self.product_name} for: ${self.product_price}"
     
     def get_absolute_url(self):  #! TO BE IMPLEMENTED LATER (when links have been made and stuff)
         return reverse("product_details",kwargs={"product_id":self.product_id})
