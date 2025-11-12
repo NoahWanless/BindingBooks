@@ -1,8 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<p>This is a test, please appear</p>
 
+  <h1>{{ product.product_name }}</h1>
+  <p>{{ product.product_description}}</p>
+  <p>Price: {{ product.product_price }}</p>
+
+  
+  #Display product tags
+
+
+  {% if product.product_tags %}
+        <h2>Tags:</h2>
+    {% for tags in product.product_tags %}
+        <p1> {{tags}} </p1>
+    {% endfor %}
+  {% else %}
+    <p>No tags</p>
+  {% endif %}
+
+  #Display product images
+
+  {% if product.product_images %}
+    {% for image_url in product.product_images %}
+        <img src="{{ image_url }}" alt="{{ product.product_title }}" class="product-image">
+    {% endfor %}
+  {% else %}
+    <p>No images available</p>
+  {% endif %}
     <form
           action="{% url 'payments:create-checkout-session' product.product_id %}"
           method="POST"
