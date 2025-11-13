@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "products",
+    # Crispy Forms
+    "crispy_forms",
+    "crispy_bootstrap5",
     "accounts",
     "forums",
     "general",
@@ -143,4 +146,8 @@ STRIPE_SECRET_KEY = config('stripe_test_api_secret_key', default='')
 STRIPE_WEBHOOK_SECRET_KEY = config('stripe_webhook_secret_key', default='')
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51SS2L12LulKl7K5WyksMW2rmoLMNnvzuYCwAheWuEnNLbO1T1NGfVbsx90WBEtFA3SDAOxb7xmSuvc68Jj5wuL0X00TyQCVU8u'
+
+#Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 

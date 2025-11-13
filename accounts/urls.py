@@ -41,4 +41,8 @@ urlpatterns = [
         ),
         name="password_change_done",
     ),
+    
+    path("profile/", views.profile, name="profile"),
+    path("profile/edit/", views.profile_edit, name="profile_edit"),
+
 ]
