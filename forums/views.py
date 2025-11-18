@@ -1,17 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import forums, forum_post, forum_comment
-
-
-# remove once base user returning correctly
-def get_forum_user(request):
-    if not request.user.is_authenticated:
-        return None
-
-    try:
-        # If base_user exists for this Django user
-        return request.user.base_user
-    except:
-        return None
+from django.contrib.auth.decorators import login_required
 
 
 def forum_list(request):
@@ -34,12 +23,13 @@ def post_detail(request, post_id):
     )
 
 
+@login_required
 def create_post(request, forum_id):
     forum = get_object_or_404(forums, pk=forum_id)
 
     if request.method == "POST":
         text = request.POST.get("text")
-        author = get_forum_user(request)  # change once base user working correctly
+        author = request.user  # change once base user working correctly
 
         forum_post.objects.create(forum=forum, author=author, post_text=text)
 
@@ -48,6 +38,7 @@ def create_post(request, forum_id):
     return render(request, "forums/create_post.html", {"forum": forum})
 
 
+@login_required
 def create_forum(request):
     if request.method == "POST":
         # get fields from post
@@ -58,9 +49,7 @@ def create_forum(request):
         meeting_day = request.POST.get("meeting_day")
         meeting_time = request.POST.get("meeting_time")
 
-        owner = get_forum_user(
-            request
-        )  # change once base user working correctly/i figure out what im doin wrong
+        forum_lead = request.user  # changed to forum lead for clarity
 
         # Convert comma-separated tags into a list
         try:
@@ -73,10 +62,10 @@ def create_forum(request):
             forum_name=name,
             forum_description=description,
             forum_tags=tag_list,
-            owner=owner,  # owner can be none for now!!! dont forget to change
-            start_date=start_date or None,
-            meeting_day=meeting_day or None,
-            meeting_time=meeting_time or None,
+            forum_lead=forum_lead,
+            start_date=start_date,
+            meeting_day=meeting_day,
+            meeting_time=meeting_time,
         )
 
         return redirect("forum_list")  # back to list page
@@ -85,7 +74,7 @@ def create_forum(request):
     return render(request, "forums/create_forum.html")
 
 
-# comments on individual posts in a given forum
+@login_required
 def create_comment(request, post_id):
     post = get_object_or_404(forum_post, pk=post_id)
 
@@ -93,7 +82,7 @@ def create_comment(request, post_id):
         text = request.POST.get("text")
 
         # owner can be none for now, dont forget to change
-        author = get_forum_user(request)
+        author = request.user
 
         forum_comment.objects.create(post=post, author=author, comment_text=text)
 

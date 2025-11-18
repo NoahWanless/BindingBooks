@@ -1,0 +1,54 @@
+#NOT TESTED YET
+
+# EXAMPLE PRODUCT
+- model: products.products
+  pk: 101
+  fields:
+    product_stripe_id: "stripe_prod_ABC123"
+    product_name: "The Enchanted Marshlands"
+    product_link: "https://yourwebsite.com/products/101"
+    product_description: "A fantasy novel set in misty wetlands full of spirits and ancient secrets."
+    product_price: 14.99
+    product_tags:
+      - "fantasy"
+      - "novel"
+      - "marsh"
+    product_text: "Once upon a time in the endless marshlands..."
+    product_images: []
+
+
+# EXAMPLE PRODUCT REVIEW
+# (author is null, allowed because FK is null=True)
+- model: products.product_review
+  pk: 101
+  fields:
+    author: null
+    product_being_reviewed: 101
+    post_text: "A vivid and atmospheric read. Loved the worldbuilding!"
+    post_reactions: []
+
+
+# BLANK TEMPLATES
+
+# TEMPLATE: PRODUCT
+# - model: products.products
+#   pk: X
+#   fields:
+#     product_stripe_id: ""
+#     product_name: ""
+#     product_link: ""
+#     product_description: ""
+#     product_price: 0.00
+#     product_tags: []
+#     product_text: ""
+#     product_images: []
+
+
+# TEMPLATE: PRODUCT REVIEW
+# - model: products.product_review
+#   pk: X
+#   fields:
+#     author: null                # or user pk
+#     product_being_reviewed: X   # must reference product pk
+#     post_text: ""
+#     post_reactions: []

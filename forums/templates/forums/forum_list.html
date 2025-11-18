@@ -3,7 +3,9 @@
 <ul>
   {% for f in forums %}
     <li>
-      <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a>
+      <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a><br />
+      Lead: {{ f.forum_lead.username|default:'Unknown lead' }}<br />
+      Meets: {{ f.meeting_day }} at {{ f.meeting_time }}
     </li>
   {% empty %}
     <li>No forums yet.</li>

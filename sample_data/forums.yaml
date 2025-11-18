@@ -1,0 +1,86 @@
+
+# USER TEMPLATE (so one always exists, dont forget to change me if the model changes!)
+
+- model: accounts.base_user
+  pk: 2001
+  fields:
+    username: "ringbearer"
+    email: "bilbo@theshire.com"
+    password: 'pbkdf2_sha256$720000$YFlmOVtzJenSndus9IPEfW$jfKNtGxJhAvMa3aauhT48Pu+YV3tcseTodOOFa9apck=' # password1234
+    is_superuser: false
+    is_staff: false
+    is_active: true
+    first_name: "bilbo"
+    last_name: "baggins"
+    user_bio: "there and back again aint got shit on my story"
+    user_owned_books: []
+
+# EXAMPLE FORUM
+- model: forums.forums
+  pk: 51
+  fields:
+    forum_name: "LOTR"
+    forum_description: "a discussion group for how cute samwise is"
+    forum_lead: 2001
+    forum_tags:
+      - "fantasy"
+      - "high-fantasy"
+      - "epic-fantasy"
+    start_date: "2025-01-10"
+    meeting_day: "Thu"
+    meeting_time: "18:00:00"
+
+
+# EXAMPLE FORUM POST
+- model: forums.forum_post
+  pk: 51
+  fields:
+    author: 2001
+    forum: 51
+    post_text: "Reasons Elves are kind of dicks"
+    post_reactions: []
+
+
+# EXAMPLE COMMENT
+
+- model: forums.forum_comment
+  pk: 51
+  fields:
+    post: 51
+    author: 2001       # or null
+    comment_text: "So many are mad racist"
+    created_at: "2025-01-11T12:00:00Z"
+
+# BLANK TEMPLATES
+
+# TEMPLATE: FORUM
+# - model: forums.forums
+#   pk: X
+#   fields:
+#     forum_name: ""
+#     forum_description: ""
+#     forum_lead: null        # or user pk
+#     forum_tags: []
+#     start_date: "YYYY-MM-DD"
+#     meeting_day: "Mon"      # one of: Mon/Tue/Wed/Thu/Fri/Sat/Sun
+#     meeting_time: "HH:MM:SS"
+
+
+# TEMPLATE: FORUM POST
+# - model: forums.forum_post
+#   pk: X
+#   fields:
+#     author: null        # or user pk
+#     forum: X            # must match an existing forum pk
+#     post_text: ""
+#     post_reactions: []
+
+
+# TEMPLATE: FORUM COMMENT
+# - model: forums.forum_comment
+#   pk: X
+#   fields:
+#     post: X            # must match forum_post pk
+#     author: null        # or user pk
+#     comment_text: ""
+#     created_at: "2025-01-01T00_

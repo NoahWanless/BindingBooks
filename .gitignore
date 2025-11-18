@@ -7,5 +7,4 @@ db.sqlite3
 
 .env
 sammy_stuff.txt
-sample_data
 *.sqlite3

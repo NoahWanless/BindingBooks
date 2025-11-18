@@ -4,13 +4,7 @@
   <a href="{% url 'forum_list' %}">Forums list</a>
 </p>
 
-<h2>
-  {% if post.author %}
-    {{ post.author.first_name }} {{ post.author.last_name }}
-  {% else %}
-    Anonymous
-  {% endif %}
-</h2>
+<h2>{{ post.author.username|default:'Unknown author' }}</h2>
 
 <p>{{ post.post_text }}</p>
 
@@ -19,14 +13,7 @@
 <h3>Comments</h3>
 <ul>
   {% for c in comments %}
-    <li>
-      {% if c.author %}
-        {{ c.author.first_name }} {{ c.author.last_name }}:
-      {% else %}
-        Anonymous:
-      {% endif %}
-      {{ c.comment_text }}
-    </li>
+    <li>{{ c.author.username|default:'Unknown author' }}: {{ c.comment_text }}</li>
   {% empty %}
     <li>No comments yet.</li>
   {% endfor %}

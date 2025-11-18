@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 
@@ -8,11 +9,11 @@ class forums(models.Model):
     forum_id = models.AutoField(primary_key=True)
     forum_name = models.TextField(null=False)
     forum_description = models.TextField()
-    owner = models.ForeignKey(
+    forum_lead = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL
-    )  # this is so if the owner is deleted, the owner here is simply set to null
+    )  # changed to forum lead for clarity
     forum_tags = models.JSONField(default=list)
-    start_date = models.DateField(null=True, blank=True)
+    start_date = models.DateField()
     meeting_day = models.CharField(
         max_length=10,
         choices=[
@@ -24,16 +25,15 @@ class forums(models.Model):
             ("Sat", "Saturday"),
             ("Sun", "Sunday"),
         ],
-        null=True,
-        blank=True,
+        blank=False,
     )
-    meeting_time = models.TimeField(null=True, blank=True)
+    meeting_time = models.TimeField()
 
     def __str__(self):
-        owner_name = (
-            self.owner.name if self.owner else "Unknown owner"
-        )  # changed so having null owner doesn't give errors -sam
-        return f"{self.forum_name} (owned by {owner_name})"
+        forum_lead_name = (
+            self.forum_lead.username if self.forum_lead else "Unknown forum lead"
+        )
+        return f"{self.forum_name} (led by {forum_lead_name})"
 
 
 class forum_post(models.Model):
@@ -44,9 +44,7 @@ class forum_post(models.Model):
     post_reactions = models.JSONField(default=list)
 
     def __str__(self):
-        author_name = (
-            self.author.name if self.author else "Unknown author"
-        )  # changed so having null owner doesnt give errors -sam
+        author_name = self.author.username if self.author else "Unknown author"
         return f"{author_name} said: {self.post_text}"
 
 
@@ -61,6 +59,6 @@ class forum_comment(models.Model):
 
     def __str__(self):
         author_name = (
-            self.author.name if self.author else "Unknown author"
+            self.author.username if self.author else "Unknown author"
         )  # null owner doesnt give errors -sam
         return f"Comment by {author_name}"

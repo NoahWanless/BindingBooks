@@ -3,12 +3,9 @@
   <a href="{% url 'forum_list' %}">Back to all forums</a>
 </p>
 <p>{{ forum.forum_description }}</p>
-{% if forum.start_date %}
-  <p>Starts: {{ forum.start_date }}</p>
-{% endif %}
-{% if forum.meeting_day and forum.meeting_time %}
-  <p>Discussion time:{{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
-{% endif %}
+<p>Starts: {{ forum.start_date }}</p>
+<p>Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
+<p>Forum lead: {{ forum.forum_lead.username|default:'Unknown owner' }}</p>
 
 <a href="{% url 'create_post' forum.forum_id %}">Create a Post</a>
 
@@ -16,13 +13,7 @@
 <ul>
   {% for p in posts %}
     <li>
-      <a href="{% url 'post_detail' p.post_id %}">
-        {% if p.author %}
-          {{ p.author.first_name }} {{ p.author.last_name }}:
-        {% else %}
-          Anonymous:
-        {% endif %}view post
-      </a>
+      <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
       <br />
       {{ p.post_text }}
     </li>
