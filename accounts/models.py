@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
-# Custom user model
+
 class base_user(AbstractUser):
     user_bio = models.TextField(blank=True)
     user_owned_books = models.JSONField(blank=True, default=list)

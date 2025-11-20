@@ -156,3 +156,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Custom user model
 AUTH_USER_MODEL = "accounts.base_user"
+
+
+FAKE_STRIPE_PURCHASES = config('stripe_fake_checkout',default='True')

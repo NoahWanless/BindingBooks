@@ -32,6 +32,8 @@ also for like billing info you dont have to bother putting anything really, like
 5 digit billing number
 
 
+to use fake stripe checkout need 
+stripe_fake_checkout=True (this can be changed to False if needed but only really me(Noah) would need to use that for now)
 
 stripe commands:
 
