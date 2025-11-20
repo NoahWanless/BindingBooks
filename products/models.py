@@ -1,10 +1,9 @@
 from django.db import models
 from django.urls import reverse
-#from accounts.models import base_user
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-# Create your models here.
+
 
 
 class products(models.Model):
@@ -21,7 +20,7 @@ class products(models.Model):
     def __str__(self):
         return f"{self.product_name} for: ${self.product_price}"
     
-    def get_absolute_url(self):  #! TO BE IMPLEMENTED LATER (when links have been made and stuff)
+    def get_absolute_url(self):  
         return reverse("product_details",kwargs={"product_id":self.product_id})
 
 
