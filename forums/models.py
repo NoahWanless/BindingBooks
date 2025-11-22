@@ -43,11 +43,12 @@ class forum_post(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(forums, on_delete=models.CASCADE, related_name="posts")
     post_text = models.TextField(null=True, blank=True,validators=[Validators.is_any_word_in_text_profanity])
-    post_reactions = models.JSONField(default=list)
+    post_reactions = models.JSONField(default=list,blank=True)
 
     def __str__(self):
         author_name = self.author.username if self.author else "Unknown author"
         return f"{author_name} said: {self.post_text}"
+    
 
 
 class forum_comment(models.Model):

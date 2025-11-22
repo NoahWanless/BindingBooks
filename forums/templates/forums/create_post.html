@@ -2,7 +2,11 @@
 
 <form method="POST">
   {% csrf_token %}
+  {% if text_entry %}
+  <textarea name="text" rows="5" cols="40" value={{text_entry}}></textarea>
+  {% else %}
   <textarea name="text" rows="5" cols="40"></textarea>
+  {% endif %}
   <br />
   <button type="submit">Submit</button>
 </form>

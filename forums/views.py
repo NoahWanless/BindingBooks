@@ -23,40 +23,46 @@ def post_detail(request, post_id):
     )
 
 from django.core.validators import ValidationError
-
-
+from django.http import HttpResponse
 
 @login_required
 def create_post(request, forum_id):
     forum = get_object_or_404(forums, pk=forum_id)
+    
 
     if request.method == "POST":
         text = request.POST.get("text") #gets text from the html 
         author = request.user  # gets current user
-        new_post = forum_post.objects.create(forum=forum, author=author, post_text=text) 
+        new_post = forum_post(forum=forum, author=author, post_text=text)
 
-
-        #__________form validation__________#
+    #__________form validation__________#
         #we first try and clean/valid the post, if it fails, takes you back to making a new form ideal with all the old info already there
-        try:
+        try: 
             new_post.full_clean()
-        except ValidationError:
-            print("ERROR ERROR WE FOUND A BAD WORD")
-            #!MAKE IT SO IT TRYS TO RESUBMIT THE FORM, USE THE FOLLOWING WEBSTIE:
-            #https://forum.djangoproject.com/t/form-validationerror-not-showing-in-form/33363
-            #TODO
-            #TODO
-            #TODO
-            #TODO
-        else:
             new_post.save()
-        
+            print("we did not find a bad word and have sent the data to the database")
+            return redirect("forum_detail", forum_id=forum_id)
+        except ValidationError as ve:
+            print("ERROR ERROR WE FOUND A BAD WORD")
+                #!MAKE IT SO IT TRYS TO RESUBMIT THE FORM, USE THE FOLLOWING WEBSTIE:
+                #https://forum.djangoproject.com/t/form-validationerror-not-showing-in-form/33363
+            context = {'text': text}
+            #return HttpResponse('')
+            return render(request,
+                        "forums/create_post.html",
+                        context={"forum": forum,'text_entry': text} #{"forum": forum, "post_text":text}
+                        )  # Pass the form with errors
+                #TODO
+                #TODO
+                #TODO
+                #TODO
+        #new_post.save()
         #___________________________________#
-
-
-        return redirect("forum_detail", forum_id=forum_id)
-    
-    return render(request, "forums/create_post.html", {"forum": forum})
+        #print("we did not find a bad word and have sent the data to the database")
+        #return redirect("forum_detail", forum_id=forum_id)
+    elif request.method == "GET":
+        #!add here contex for if we send a string maybe
+        return render(request, "forums/create_post.html", {"forum": forum})
 
 
 @login_required

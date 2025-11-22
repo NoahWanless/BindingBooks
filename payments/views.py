@@ -58,10 +58,11 @@ from django.shortcuts import get_object_or_404
 class CreateStripeCheckoutSessionView(View):
     def post(self,request,*args,**kwarfs):
         product = products.objects.get(product_id=self.kwargs["pk"]) #uses the primary key passed in to get the product stuff
+        #TODO raise error if book doesnt exist 
         #----checks if book is being gifted to a person----#
         if 'gifted_ui' in self.kwargs:
             current_user = User.objects.get(id=self.kwargs["gifted_ui"])
-            pass
+            #TODO raise error if user doesnt exist
         else:
             current_user = request.user
 
@@ -129,6 +130,9 @@ class StripeWebhookView(View):
             user_id = session["metadata"]["user_id"]
             current_user = get_object_or_404(User, id=user_id)
             json_data = current_user.user_owned_books
+            #TODO add it so it checks if the current user already has the book or not 
+            #TODO
+            #TODO
             json_data.append({'book_id': product_id})
             current_user.user_owned_books = json_data
             current_user.save(update_fields=['user_owned_books'])

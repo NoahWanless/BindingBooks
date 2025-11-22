@@ -46,3 +46,6 @@ stripe listen --forward-to localhost:8000/payments/webhooks/stripe/
 
 https://onetimesecret.com/en/
 to be used for sharing secret key
+
+
+pip install model-bakery
