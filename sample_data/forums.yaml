@@ -1,6 +1,5 @@
 
-# USER TEMPLATE (so one always exists, dont forget to change me if the model changes!)
-
+# USER TEMPLATE (so some always exist, dont forget to change me if the model changes!)
 - model: accounts.base_user
   pk: 2001
   fields:
@@ -13,8 +12,66 @@
     first_name: "bilbo"
     last_name: "baggins"
     favorite_genre: "fantasy"
+    profile_image: null
     user_bio: "there and back again aint got shit on my story"
     user_owned_books: []
+
+- model: accounts.base_user
+  pk: 2002
+  fields:
+    username: "mawmouthsfearme"
+    email: "el@thescholomance.com"
+    password: 'pbkdf2_sha256$720000$YFlmOVtzJenSndus9IPEfW$jfKNtGxJhAvMa3aauhT48Pu+YV3tcseTodOOFa9apck=' # password1234
+    is_superuser: false
+    is_staff: false
+    is_active: true
+    first_name: "Galadriel"
+    last_name: "Higgins"
+    favorite_genre: "fantasy"
+    profile_image: null
+    user_bio: "No, I don't wanna be in your club"
+    user_owned_books: []
+
+#products (so some always exists)
+
+- model: products.products
+  pk: 3001
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "The Hobbit"
+    product_link: "https://openlibrary.org/works/OL27482W/The_Hobbit?edition=key:/books/OL51709286M"
+    product_description: "Bilbo Baggins' journey from Hobbiton to the Lonely Mountain."
+    product_price: 14.99
+    product_tags: ["fantasy", "classic", "tolkien"]
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/OLID/OL51709286M-L.jpg"
+
+- model: products.products
+  pk: 3002
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "A Deadly Education"
+    product_link: "https://openlibrary.org/works/OL20881237W/A_Deadly_Education?edition=key:/books/OL29514724M#details"
+    product_description: "A deadly magical school where survival is extra credit."
+    product_price: 17.50
+    product_tags: ["fantasy", "dark-academia"]
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/OLID/OL29514724M-L.jpg"
+
+- model: products.products
+  pk: 3003
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Howl's Moving Castle"
+    product_link: "https://openlibrary.org/works/OL60149W/Howl's_Moving_Castle?edition=key:/books/OL2540706M"
+    product_description: "A girl cursed to become elderly seeks help from a dramatic wizard."
+    product_price: 13.49
+    product_tags: ["fantasy", "romantic-fantasy"]
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/OLID/OL2540706M-L.jpg"
 
 # EXAMPLE FORUM
 - model: forums.forums
@@ -30,7 +87,37 @@
     start_date: "2025-01-10"
     meeting_day: "Thu"
     meeting_time: "18:00:00"
+    product: 3001
 
+- model: forums.forums
+  pk: 52
+  fields:
+    forum_name: "Scholomance Survivors"
+    forum_description: "Sharing tips for not getting eaten in a magic school."
+    forum_lead: 2002
+    forum_tags:
+      - "fantasy"
+      - "dark-academia"
+    start_date: "2025-02-01"
+    meeting_day: "Tue"
+    meeting_time: "19:00:00"
+    product: 3002
+
+
+- model: forums.forums
+  pk: 53
+  fields:
+    forum_name: "Minor Characters Anonymous"
+    forum_description: "A place where side characters finally get the spotlight."
+    forum_lead: 2001
+    forum_tags:
+      - "fantasy"
+      - "character-analysis"
+      - "underdogs"
+    start_date: "2025-01-22"
+    meeting_day: "Fri"
+    meeting_time: "17:30:00"
+    product: null
 
 # EXAMPLE FORUM POST
 - model: forums.forum_post
@@ -41,6 +128,38 @@
     post_text: "Reasons Elves are kind of dicks"
     post_reactions: []
 
+- model: forums.forum_post
+  pk: 52
+  fields:
+    author: 2002
+    forum: 52
+    post_text: "Rank your top three least lethal electives."
+    post_reactions: []
+
+- model: forums.forum_post
+  pk: 53
+  fields:
+    author: 2001
+    forum: 53
+    post_text: "Name a minor character who absolutely carried the plot."
+    post_reactions: []
+
+- model: forums.forum_post
+  pk: 54
+  fields:
+    author: 2002
+    forum: 51
+    post_text: "Okay but hear me out: Elves are BOTH majestic AND petty."
+    post_reactions: []
+
+- model: forums.forum_post
+  pk: 55
+  fields:
+    author: 2002
+    forum: 53
+    post_text: "Characters who deserved their own spinoff. Go."
+    post_reactions: []
+
 
 # EXAMPLE COMMENT
 
@@ -49,8 +168,42 @@
   fields:
     post: 51
     author: 2001       # or null
-    comment_text: "So many are mad racist"
+    comment_text: "So many are mad rude"
     created_at: "2025-01-11T12:00:00Z"
+
+- model: forums.forum_comment
+  pk: 52
+  fields:
+    post: 52
+    author: 2001
+    comment_text: "Advanced Summoning is only ‘least lethal’ if you cheat."
+    created_at: "2025-02-02T10:15:00Z"
+
+- model: forums.forum_comment
+  pk: 53
+  fields:
+    post: 53
+    author: 2002
+    comment_text: "Tom Bombadil. I fear that colorful man."
+    created_at: "2025-01-23T09:30:00Z"
+
+- model: forums.forum_comment
+  pk: 54
+  fields:
+    post: 54
+    author: 2001
+    comment_text: "Petty? Yes. Also somehow still prettier than me during a fight."
+    created_at: "2025-01-15T18:45:00Z"
+
+- model: forums.forum_comment
+  pk: 55
+  fields:
+    post: 55
+    author: 2001
+    comment_text: "Yancy! she is around for like, a chapter and a half and then vanishes forever"
+    created_at: "2025-01-24T13:20:00Z"
+
+
 
 # BLANK TEMPLATES
 
@@ -65,6 +218,7 @@
 #     start_date: "YYYY-MM-DD"
 #     meeting_day: "Mon"      # one of: Mon/Tue/Wed/Thu/Fri/Sat/Sun
 #     meeting_time: "HH:MM:SS"
+#     product: null
 
 
 # TEMPLATE: FORUM POST

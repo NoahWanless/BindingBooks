@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
   {{ forum.forum_name }}| BindingBooks
 {% endblock %}
@@ -12,6 +14,9 @@
   </ul>
 {% endblock %}
 {% block content %}
+  <link rel="stylesheet" href="{% static 'forums/forums.css' %}" />
+
+  {% include 'includes/product_sidebar.html' %}
   <p>{{ forum.forum_description }}</p>
   <p>Starts: {{ forum.start_date }}</p>
   <p>Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>

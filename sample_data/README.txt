@@ -16,7 +16,7 @@ step 3: run python manage.py loaddata sample_data/*.yaml
 
 if you make changes to a previously existing sample_data, and want to remove old instances of just that model do this
 
-step 1: run python manage.py shell
+step 1: python manage.py shell
 step 2: >>>from <app_name>.<models> import <model_name>
 step 3: >>><model_name>.objects.all().delete()
 
@@ -25,7 +25,7 @@ from accounts.models import base_user
 base_user.objects.all().delete()
 
 then be sure to run 
-run python manage.py loaddata sample_data/<filename>.yaml 
+python manage.py loaddata sample_data/<filename>.yaml 
 
 
 if you are having issues, i suggest deleting the .sqlite3, migrating, and then running loaddata again. any time a model is updated, you will need to migrate at the very least.

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
   {{ post.forum.forum_name }} | BindingBooks
 {% endblock %}
@@ -8,6 +10,8 @@
   </li>
 {% endblock %}
 {% block content %}
+  <link rel="stylesheet" href="{% static 'forums/forums.css' %}" />
+  {% include 'includes/product_sidebar.html' with forum=post.forum %}
   <h2>{{ post.author.username|default:'Unknown author' }}</h2>
 
   <p>{{ post.post_text }}</p>
