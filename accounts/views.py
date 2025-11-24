@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 
-from .forms import SignUpForm, UserUpdateForm
+from .forms import SignUpForm, UserUpdateForm, ProfileEditForm
 
 
 def signup(request):
@@ -30,16 +30,12 @@ def profile(request):
 @login_required
 def profile_edit(request):
     if request.method == "POST":
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        if user_form.is_valid():
-            user_form.save()
-            messages.success(request, "Profile updated!")
+        form = ProfileEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
             return redirect("accounts:profile")
     else:
-        user_form = UserUpdateForm(instance=request.user)
+        form = ProfileEditForm(instance=request.user)
 
-    return render(
-        request,
-        "accounts/profile_edit.html",
-        {"user_form": user_form},
-    )
+    return render(request, "accounts/profile_edit.html", {"form": form})
+

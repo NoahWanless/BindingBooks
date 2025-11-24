@@ -9,10 +9,16 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name","favorite_genre", "user_bio")
+        fields = ("username", "email", "first_name", "last_name","favorite_genre", "user_bio", "profile_image")
 
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name", "favorite_genre", "user_bio")
+        fields = ("username", "email", "first_name", "last_name", "favorite_genre", "user_bio", "profile_image")
+        
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email", "favorite_genre", "user_bio", "profile_image")
+
