@@ -2,19 +2,20 @@
 {% block title %}
   Create a Post in {{ forum.forum_name }} | BindingBooks
 {% endblock %}
-
+{% block extra_nav %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'forum_detail' post.forum.forum_id %}">Back to {{ post.forum.forum_name }}</a>
+  </li>
+{% endblock %}
 {% block content %}
-  <body>
-
-<form method="POST">
-  {% csrf_token %}
-  {% if text_entry %}
-  <textarea name="text" rows="5" cols="40" value={{text_entry}}></textarea>
-  {% else %}
-  <textarea name="text" rows="5" cols="40"></textarea>
-  {% endif %}
-  <br />
-  <button type="submit">Submit</button>
-</form>
-  </body>
+  <form method="POST">
+    {% csrf_token %}
+    {% if text_entry %}
+      <textarea name="text" rows="5" cols="40" value="{{ text_entry }}"></textarea>
+    {% else %}
+      <textarea name="text" rows="5" cols="40"></textarea>
+    {% endif %}
+    <br />
+    <button type="submit">Submit</button>
+  </form>
 {% endblock %}

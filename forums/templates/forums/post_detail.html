@@ -1,37 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}
-  {{ forum.forum_name }} Post Details | BindingBooks
+  {{ post.forum.forum_name }} | BindingBooks
 {% endblock %}
-
+{% block extra_nav %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'forum_detail' post.forum.forum_id %}">Back to {{ post.forum.forum_name }}</a>
+  </li>
+{% endblock %}
 {% block content %}
-  <body>
-    <p>
-      <a href="{% url 'forum_detail' post.forum.forum_id %}">Back to forum</a> |
-      <a href="{% url 'forum_list' %}">Forums list</a>
-    </p>
+  <h2>{{ post.author.username|default:'Unknown author' }}</h2>
 
-    <h2>{{ post.author.username|default:'Unknown author' }}</h2>
+  <p>{{ post.post_text }}</p>
 
-    <p>{{ post.post_text }}</p>
+  <hr />
 
-    <hr />
+  <h3>Comments</h3>
+  <ul>
+    {% for c in comments %}
+      <li>{{ c.author.username|default:'Unknown author' }}: {{ c.comment_text }}</li>
+    {% empty %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
 
-    <h3>Comments</h3>
-    <ul>
-      {% for c in comments %}
-        <li>{{ c.author.username|default:'Unknown author' }}: {{ c.comment_text }}</li>
-      {% empty %}
-        <li>No comments yet.</li>
-      {% endfor %}
-    </ul>
+  <hr />
 
-    <hr />
-
-    <h3>Add a Comment</h3>
+  <h3>Add a Comment</h3>
+  {% if user.is_authenticated %}
     <form action="{% url 'create_comment' post.post_id %}" method="POST">
       {% csrf_token %}
       <textarea name="text" rows="3" placeholder="Write your comment..."></textarea>
       <button type="submit">Submit</button>
     </form>
-  </body>
+  {% else %}
+    <p>
+      You must <a href="{% url 'accounts:login' %}">log in</a> to comment.
+    </p>
+  {% endif %}
 {% endblock %}
