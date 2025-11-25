@@ -1,0 +1,10 @@
+<h1>Moderation Queue</h1>
+
+{% for item in items %}
+  <div>
+    <p><strong>{{ item.content_object }}</strong></p>
+    <a href="{% url 'review_item' item.pk %}">Review</a>
+  </div>
+{% empty %}
+  <p>No items awaiting moderation.</p>
+{% endfor %}

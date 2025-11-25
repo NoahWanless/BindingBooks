@@ -2,6 +2,7 @@ from django.db import models
 from products.models import products
 from django.contrib.auth import get_user_model
 from general.validators import Validators
+from django.contrib.contenttypes.fields import GenericRelation
 
 User = get_user_model()
 
@@ -50,6 +51,8 @@ import csv
 
 
 class forum_post(models.Model):
+    approved = models.BooleanField(default=False)
+    moderation = GenericRelation('moderation.ModerationQueue')
     post_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(forums, on_delete=models.CASCADE, related_name="posts")

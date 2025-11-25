@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "forums",
     "general",
     "payments",
+    "moderation.apps.ModerationConfig",
 ]
 
 MIDDLEWARE = [

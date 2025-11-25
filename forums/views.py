@@ -10,7 +10,7 @@ def forum_list(request):
 
 def forum_detail(request, forum_id):
     forum = get_object_or_404(forums, pk=forum_id)
-    posts = forum.posts.all()  # shows only this forums posts
+    posts = forum.posts.filter(approved=True)  # shows only this forums posts
     return render(request, "forums/forum_detail.html", {"forum": forum, "posts": posts})
 
 
