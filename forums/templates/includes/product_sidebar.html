@@ -1,0 +1,12 @@
+{% if forum.product %}
+  <div class="product-sidebar">
+    <div class="product-card">
+      {% if forum.product.product_images %}
+        <img src="{{ forum.product.product_images.0 }}" alt="{{ forum.product.product_name }}" />
+      {% endif %}
+      <h4>{{ forum.product.product_name }}</h4>
+      <p>${{ forum.product.product_price }}</p>
+      <a href="{% url 'product_details' forum.product.product_id %}">View Book</a>
+    </div>
+  </div>
+{% endif %}

@@ -1,14 +1,24 @@
-<h1>Forums</h1>
-
-<ul>
-  {% for f in forums %}
-    <li>
-      <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a><br />
-      Lead: {{ f.forum_lead.username|default:'Unknown lead' }}<br />
-      Meets: {{ f.meeting_day }} at {{ f.meeting_time }}
+{% extends 'base.html' %}
+{% block title %}
+  Forums | BindingBooks
+{% endblock %}
+{% block extra_nav %}
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'create_forum' %}">+ Create New Forum</a>
     </li>
-  {% empty %}
-    <li>No forums yet.</li>
-  {% endfor %}
-  <a href="{% url 'create_forum' %}">+ Create New Forum</a>
-</ul>
+  {% endif %}
+{% endblock %}
+{% block content %}
+  <ul>
+    {% for f in forums %}
+      <li>
+        <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a><br />
+        Lead: {{ f.forum_lead.username|default:'Unknown lead' }}<br />
+        Meets: {{ f.meeting_day }} at {{ f.meeting_time }}
+      </li>
+    {% empty %}
+      <li>No forums yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

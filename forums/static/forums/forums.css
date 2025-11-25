@@ -1,0 +1,32 @@
+.product-sidebar {
+    position: sticky;
+    top: 100px;
+    float: right;
+    width: 260px;
+    margin-left: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fafafa;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+@media(max-width: 900px) {
+    .product-sidebar {
+        float: none;
+        width: 100%;
+        margin: 0;
+        position: relative;
+        top: auto;
+        margin-bottom: 20px;
+    }
+}

@@ -1,23 +1,37 @@
-<h1>{{ forum.forum_name }}</h1>
-<p>
-  <a href="{% url 'forum_list' %}">Back to all forums</a>
-</p>
-<p>{{ forum.forum_description }}</p>
-<p>Starts: {{ forum.start_date }}</p>
-<p>Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
-<p>Forum lead: {{ forum.forum_lead.username|default:'Unknown owner' }}</p>
+{% extends 'base.html' %}
+{% load static %}
 
-<a href="{% url 'create_post' forum.forum_id %}">Create a Post</a>
+{% block title %}
+  {{ forum.forum_name }}| BindingBooks
+{% endblock %}
+{% block extra_nav %}
+  <ul class="navbar-nav">
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'create_post' forum.forum_id %}">+ Create New Post in {{ forum.forum_name }}</a>
+      </li>
+    {% endif %}
+  </ul>
+{% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="{% static 'forums/forums.css' %}" />
 
-<h2>Posts</h2>
-<ul>
-  {% for p in posts %}
-    <li>
-      <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
-      <br />
-      {{ p.post_text }}
-    </li>
-  {% empty %}
-    <li>No posts yet.</li>
-  {% endfor %}
-</ul>
+  {% include 'includes/product_sidebar.html' %}
+  <p>{{ forum.forum_description }}</p>
+  <p>Starts: {{ forum.start_date }}</p>
+  <p>Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
+  <p>Forum lead: {{ forum.forum_lead.username|default:'Unknown owner' }}</p>
+
+  <h2>Posts</h2>
+  <ul>
+    {% for p in posts %}
+      <li>
+        <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
+        <br />
+        {{ p.post_text }}
+      </li>
+    {% empty %}
+      <li>No posts yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

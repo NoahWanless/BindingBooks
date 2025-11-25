@@ -1,14 +1,24 @@
 from django.db import models
-
+from products.models import products
 from django.contrib.auth import get_user_model
 from general.validators import Validators
+
 User = get_user_model()
 
 
 class forums(models.Model):
     forum_id = models.AutoField(primary_key=True)
     forum_name = models.TextField(null=False)
-    forum_description = models.TextField(validators=[Validators.is_any_word_in_text_profanity])
+    product = models.ForeignKey(
+        products,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="forums_about_this_book",
+    )
+    forum_description = models.TextField(
+        validators=[Validators.is_any_word_in_text_profanity]
+    )
     forum_lead = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL
     )  # changed to forum lead for clarity
@@ -29,26 +39,28 @@ class forums(models.Model):
     )
     meeting_time = models.TimeField()
 
-    
-
     def __str__(self):
         forum_lead_name = (
             self.forum_lead.username if self.forum_lead else "Unknown forum lead"
         )
         return f"{self.forum_name} (led by {forum_lead_name})"
 
+
 import csv
+
+
 class forum_post(models.Model):
     post_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(forums, on_delete=models.CASCADE, related_name="posts")
-    post_text = models.TextField(null=True, blank=True,validators=[Validators.is_any_word_in_text_profanity])
-    post_reactions = models.JSONField(default=list,blank=True)
+    post_text = models.TextField(
+        null=True, blank=True, validators=[Validators.is_any_word_in_text_profanity]
+    )
+    post_reactions = models.JSONField(default=list, blank=True)
 
     def __str__(self):
         author_name = self.author.username if self.author else "Unknown author"
         return f"{author_name} said: {self.post_text}"
-    
 
 
 class forum_comment(models.Model):
@@ -57,7 +69,9 @@ class forum_comment(models.Model):
         forum_post, on_delete=models.CASCADE, related_name="comments"
     )
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    comment_text = models.TextField(null=False,validators=[Validators.is_any_word_in_text_profanity])
+    comment_text = models.TextField(
+        null=False, validators=[Validators.is_any_word_in_text_profanity]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

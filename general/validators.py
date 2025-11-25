@@ -1,4 +1,3 @@
-import csv
 from django.core.validators import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -10,10 +9,7 @@ class Validators():
 
     translation_table = dict.fromkeys(map(ord, '!,.'), None) 
     with open('static/profanity-list.txt') as f:
-            reader = csv.reader(f, delimiter="\n")
-            bad_word_list = sum(list(reader),[])
-             #this is because it imports the file as a list of 1 element lists like this: [['word'],['word']]
-            #and that flattens it out
+            bad_word_list = [line.strip() for line in f.readlines() if line.strip()]
 
     def Validators(self):
         return self
@@ -23,8 +19,7 @@ class Validators():
     def is_word_profanity(value):
         translation_table = dict.fromkeys(map(ord, '!,.'), None) 
         with open('static/profanity-list.txt') as f:
-            reader = csv.reader(f, delimiter="\n")
-            bad_word_list = sum(list(reader),[])
+            bad_word_list = [line.strip() for line in f.readlines() if line.strip()]
 
         if value in bad_word_list:
             raise ValidationError(_(f"You cant have bad words in your message"), code="invalid")
@@ -43,8 +38,7 @@ class Validators():
     def is_any_word_in_text_profanity(value):
         translation_table = dict.fromkeys(map(ord, '!,.'), None) 
         with open('static/profanity-list.txt') as f:
-            reader = csv.reader(f, delimiter="\n")
-            bad_word_list = sum(list(reader),[])
+            bad_word_list = [line.strip() for line in f.readlines() if line.strip()]
 
 
         text = value.translate(translation_table) #this removes some puncuality
