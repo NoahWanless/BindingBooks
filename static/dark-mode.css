@@ -1,3 +1,4 @@
+/* Dark mode custom styles */
 [data-bs-theme="dark"] {
   --bs-body-bg: #121212;
   --bs-body-color: #e0e0e0;
