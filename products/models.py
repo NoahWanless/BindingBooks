@@ -22,6 +22,10 @@ class products(models.Model):
     
     def get_absolute_url(self):  
         return reverse("product_details",kwargs={"product_id":self.product_id})
+    
+    def reviews(self):
+        # empty list for reviews
+        return list(self.product_review_set.all())
 
 
 class product_review(models.Model):
