@@ -51,8 +51,8 @@ import csv
 
 
 class forum_post(models.Model):
-    approved = models.BooleanField(default=False)
-    moderation = GenericRelation('moderation.ModerationQueue')
+    approved = models.BooleanField(default=True)
+    moderation = GenericRelation("moderation.ModerationQueue")
     post_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(forums, on_delete=models.CASCADE, related_name="posts")
@@ -67,6 +67,7 @@ class forum_post(models.Model):
 
 
 class forum_comment(models.Model):
+    approved = models.BooleanField(default=True)
     comment_id = models.AutoField(primary_key=True)
     post = models.ForeignKey(
         forum_post, on_delete=models.CASCADE, related_name="comments"

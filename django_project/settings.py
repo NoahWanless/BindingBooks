@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     #"accounts",
     "forums",
+    "reviews",
     "general",
     "payments",
     "moderation.apps.ModerationConfig",
@@ -159,7 +160,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 AUTH_USER_MODEL = "accounts.base_user"
 
 
-FAKE_STRIPE_PURCHASES = config('stripe_fake_checkout',default='True')
+FAKE_STRIPE_PURCHASES = config("stripe_fake_checkout", default="True")
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

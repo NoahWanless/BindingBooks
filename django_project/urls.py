@@ -27,7 +27,8 @@ urlpatterns = [
     path("payments/", include("payments.urls", namespace="payments")),
     path("forums/", include("forums.urls")),  # added
     path("accounts/", include("accounts.urls")),  # added
-    path('moderation/', include('moderation.urls')),
+    path("moderation/", include("moderation.urls")),
+    path("reviews/", include("reviews.urls")),
 ]
 
 if settings.DEBUG:

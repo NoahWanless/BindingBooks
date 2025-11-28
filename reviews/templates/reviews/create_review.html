@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Write a Review</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label for="product_id">Choose Something to Review:</label><br />
+    <select name="product_id" required>
+      <option value="">Choose a book</option>
+      {% for p in products %}
+        <option value="{{ p.product_id }}">{{ p.product_name }}</option>
+      {% endfor %}
+    </select>
+    <br /><br />
+    <label>Your Review:</label><br />
+    <textarea name="review_text" rows="4"></textarea>
+    <br /><br />
+    <label>Star Rating:</label><br />
+    <input type="radio" name="star_rating" value="1" />1<input type="radio" name="star_rating" value="2" />2<input type="radio" name="star_rating" value="3" />3<input type="radio" name="star_rating" value="4" />4<input type="radio" name="star_rating" value="5" />5
+    <br /><br />
+    <label>Spice Rating:</label><br />
+    <input type="radio" name="spice_rating" value="1" />1<input type="radio" name="spice_rating" value="2" />2<input type="radio" name="spice_rating" value="3" />3<input type="radio" name="spice_rating" value="4" />4<input type="radio" name="spice_rating" value="5" />5
+    <br /><br />
+    <label>Violence Rating:</label><br />
+    <input type="radio" name="violence_rating" value="1" />1<input type="radio" name="violence_rating" value="2" />2<input type="radio" name="violence_rating" value="3" />3<input type="radio" name="violence_rating" value="4" />4<input type="radio" name="violence_rating" value="5" />5
+    <br /><br />
+    <button type="submit">Submit Review</button>
+  </form>
+{% endblock %}

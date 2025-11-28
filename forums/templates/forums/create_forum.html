@@ -9,7 +9,13 @@
 {% block content %}
   <form method="POST">
     {% csrf_token %}
-
+    <label for="product_id">Choose Something to Talk About:</label><br />
+    <select name="product_id">
+      <option value="">Choose a book</option>
+      {% for p in products %}
+        <option value="{{ p.product_id }}">{{ p.product_name }}</option>
+      {% endfor %}
+    </select><br /><br />
     <label>Forum Name</label><br />
     <input type="text" name="forum_name" required /><br /><br />
 

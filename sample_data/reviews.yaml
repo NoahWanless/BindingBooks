@@ -1,0 +1,98 @@
+- model: accounts.base_user
+  pk: 2001
+  fields:
+    username: "ringbearer"
+    email: "bilbo@theshire.com"
+    password: 'pbkdf2_sha256$720000$YFlmOVtzJenSndus9IPEfW$jfKNtGxJhAvMa3aauhT48Pu+YV3tcseTodOOFa9apck=' # password1234
+    is_superuser: false
+    is_staff: false
+    is_active: true
+    first_name: "bilbo"
+    last_name: "baggins"
+    favorite_genre: "fantasy"
+    profile_image: null
+    user_bio: "there and back again aint got shit on my story"
+    user_owned_books: []
+
+- model: products.products
+  pk: 3001
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "The Hobbit"
+    product_link: "https://openlibrary.org/works/OL27482W/The_Hobbit?edition=key:/books/OL51709286M"
+    product_description: "Bilbo Baggins' journey from Hobbiton to the Lonely Mountain."
+    product_price: 14.99
+    product_tags: ["fantasy", "classic", "tolkien"]
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/OLID/OL51709286M-L.jpg"
+
+- model: reviews.Review
+  pk: 4001
+  fields:
+    created_at: "2025-01-01"
+    approved: true
+    author: 2001
+    product: 3001
+    review_text: "review review review. many review."
+    review_tags: ["classic", "adventure"]
+    trigger_warnings: ["mild-violence"]
+    star_rating: 5
+    spice_rating: 1
+    violence_rating: 2
+
+- model: reviews.Review
+  pk: 4002
+  fields:
+    created_at: "2025-01-01"
+    approved: true
+    author: 2001
+    product: 3001
+    review_text: "blacj blah blahs kdfakshfa"
+    review_tags: ["fantasy"]
+    trigger_warnings: []
+    star_rating: 4
+    spice_rating: 1
+    violence_rating: 2
+
+- model: reviews.Review
+  pk: 4003
+  fields:
+    created_at: "2025-01-01"
+    approved: true
+    author: 2001
+    product: 3001
+    review_text: "Trolls!"
+    review_tags: ["classic"]
+    trigger_warnings: ["fantasy-violence"]
+    star_rating: 4
+    spice_rating: 1
+    violence_rating: 3
+
+- model: reviews.Review
+  pk: 4004
+  fields:
+    created_at: "2025-01-01"
+    approved: true
+    author: 2001
+    product: 3001
+    review_text: "Still one of my favorite reads."
+    review_tags: ["high-fantasy"]
+    trigger_warnings: []
+    star_rating: 5
+    spice_rating: 1
+    violence_rating: 1
+
+- model: reviews.Review
+  pk: 4005
+  fields:
+    created_at: "2025-01-01"
+    approved: true
+    author: 2001
+    product: 3001
+    review_text: "testing test test test"
+    review_tags: ["classic"]
+    trigger_warnings: ["dark-themes"]
+    star_rating: 5
+    spice_rating: 1
+    violence_rating: 3
