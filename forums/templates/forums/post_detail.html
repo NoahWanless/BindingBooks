@@ -21,7 +21,9 @@
   <h3>Comments</h3>
   <ul>
     {% for c in comments %}
-      <li>{{ c.author.username|default:'Unknown author' }}: {{ c.comment_text }}</li>
+      {% if c.approved == True %}
+        <li>{{ c.author.username|default:'Unknown author' }}: {{ c.comment_text }}</li>
+      {% endif %}
     {% empty %}
       <li>No comments yet.</li>
     {% endfor %}

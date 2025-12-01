@@ -22,11 +22,13 @@
   <h2>Posts</h2>
   <ul>
     {% for p in posts %}
-      <li>
-        <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
-        <br />
-        {{ p.post_text }}
-      </li>
+      {% if p.approved == True %}
+        <li>
+          <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
+          <br />
+          {{ p.post_text }}
+        </li>
+      {% endif %}
     {% empty %}
       <li>No posts yet.</li>
     {% endfor %}

@@ -123,7 +123,7 @@
 - model: forums.forum_post
   pk: 51
   fields:
-    approved: True
+    approved: False 
     author: 2001
     forum: 51
     post_text: "Reasons Elves are kind of dicks"
@@ -180,7 +180,7 @@
 - model: forums.forum_comment
   pk: 52
   fields:
-    approved: True
+    approved: False
     post: 52
     author: 2001
     comment_text: "Advanced Summoning is only ‘least lethal’ if you cheat."
