@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from products.models import products
-# CHANGE 1: Capitalized 'Tag'
 from general.models import Tag 
 import requests
 import random
@@ -18,7 +17,6 @@ class Command(BaseCommand):
 
         self.stdout.write(f"Fetching {count} books for subject: '{query}'...")
 
-        # CHANGE 2: Used 'Tag.objects.all()' (Capital T)
         valid_tags_db = Tag.objects.all()
         tag_lookup = {t.name.lower(): t for t in valid_tags_db}
         
