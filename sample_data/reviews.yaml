@@ -12,7 +12,7 @@
     favorite_genre: "fantasy"
     profile_image: null
     user_bio: "there and back again aint got shit on my story"
-    user_owned_books: []
+    user_owned_products: []
 
 - model: products.products
   pk: 3001

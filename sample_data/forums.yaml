@@ -14,7 +14,7 @@
     favorite_genre: "fantasy"
     profile_image: null
     user_bio: "there and back again aint got shit on my story"
-    user_owned_books: []
+    user_owned_products: []
 
 - model: accounts.base_user
   pk: 2002
@@ -30,7 +30,7 @@
     favorite_genre: "fantasy"
     profile_image: null
     user_bio: "No, I don't wanna be in your club"
-    user_owned_books: []
+    user_owned_products: []
 
 #products (so some always exists)
 

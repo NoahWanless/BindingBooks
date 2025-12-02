@@ -13,7 +13,8 @@ class products(models.Model):
     product_link = models.TextField() #^somehow make this so this autogenerates as well
     product_description = models.TextField()
     product_price = models.FloatField(null=False) #forces a entry to have a price
-    product_tags = models.JSONField(default=list) #tags will go here (this is a generic list of any number of items that you might want to put in)
+    product_tags = models.JSONField(default=list) #legacy: list of tag names
+    product_tags_m2m = models.ManyToManyField('general.Tag', blank=True, related_name='products')
     product_text = models.TextField() #THIS IS WHERE THE ACTUAL BOOK GOES
     product_images = models.JSONField(default=list) #THIS IS WHAT YOU WOULD USE IF YOU HAD IMAGES INSTEAD OF TEXT
 

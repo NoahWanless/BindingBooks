@@ -29,10 +29,10 @@
 
   <section class="mt-4">
     <h2 class="h5">Tags</h2>
-    {% if product.product_tags %}
+    {% if product.product_tags_m2m.all %}
       <div>
-        {% for tag in product.product_tags %}
-          <span class="badge text-bg-secondary me-1 mb-1">{{ tag }}</span>
+        {% for tag in product.product_tags_m2m.all %}
+          <span class="badge text-bg-secondary me-1 mb-1">{{ tag.name }}</span>
         {% endfor %}
       </div>
     {% else %}
