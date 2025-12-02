@@ -24,24 +24,13 @@ class ProductDetailView(DetailView):
 
         current_user_id = self.request.user.id
         current_user = User.objects.get(id=current_user_id)
-        print("type(current_user)---------------------")
-        print(type(current_user))
+        display_book = True
+        for book in current_user.user_owned_products.all():
+            if book.product_id == self.get_object().product_id: #the book in the list is the same book as the one we are trying to purchase
+                display_book = False 
 
-        print("type(current_user.user_owned_products)---------------------")
-        print(type(current_user.user_owned_products))
-
-        
-        test = current_user.user_owned_products.products.all()
-        
-        print(test)
-        owned_books = current_user.user_owned_products.products
-
-        for item in owned_books.all():
-            print(item)
-
-        context['jsinfo'] = json.dumps({'product_id':self.get_object().product_id,
-                                        'user_id':self.request.user.id,
-                                        'all_books':self.request.user.user_owned_books}) #sends json info to be used by js of user info
+        if display_book == False:
+            context['display_book'] = False
         return context
 
 
