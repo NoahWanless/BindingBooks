@@ -15,10 +15,14 @@
       <h1 class="mb-1">{{ product.product_name }}</h1>
       <p class="text-muted mb-0">Price: ${{ product.product_price|floatformat:2 }}</p>
     </div>
+    {% if display_book == True%}
     <form action="{% url 'payments:create-checkout-session' product.product_id %}" method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-primary" id='checkoutbutton'>Checkout</button>
     </form>
+    {% else %}
+  <!-- this is where whatever display you want for telling the user that they cant purchase this book because they already own it -->
+    {% endif %}
   </div>
 
   <p>{{ product.product_description }}</p>

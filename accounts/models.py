@@ -20,7 +20,6 @@ class base_user(AbstractUser):
     user_bio = models.TextField(blank=True)
     favorite_genre = models.CharField(max_length=50, choices=FAVORITE_GENRES, blank=True)
     favorite_authors = models.JSONField(blank=True, default=list) # new CQ
-    user_owned_books = models.JSONField(blank=True, default=list)
     user_owned_products = models.ManyToManyField(products)
     is_user_a_test_user = models.BooleanField(default=False)
     
