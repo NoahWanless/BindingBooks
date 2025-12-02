@@ -2,6 +2,7 @@ from django.db import models
 from products.models import products
 from django.contrib.auth import get_user_model
 from general.validators import Validators
+from django.contrib.contenttypes.fields import GenericRelation
 
 User = get_user_model()
 
@@ -23,6 +24,7 @@ class forums(models.Model):
         User, null=True, on_delete=models.SET_NULL
     )  # changed to forum lead for clarity
     forum_tags = models.JSONField(default=list)
+    forum_tags_m2m = models.ManyToManyField('general.Tag', blank=True, related_name='forums')
     start_date = models.DateField()
     meeting_day = models.CharField(
         max_length=10,
@@ -50,6 +52,8 @@ import csv
 
 
 class forum_post(models.Model):
+    approved = models.BooleanField(default=True)
+    moderation = GenericRelation("moderation.ModerationQueue")
     post_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(forums, on_delete=models.CASCADE, related_name="posts")
@@ -64,6 +68,7 @@ class forum_post(models.Model):
 
 
 class forum_comment(models.Model):
+    approved = models.BooleanField(default=True)
     comment_id = models.AutoField(primary_key=True)
     post = models.ForeignKey(
         forum_post, on_delete=models.CASCADE, related_name="comments"

@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     # Crispy Forms
     "crispy_forms",
     "crispy_bootstrap5",
-    # "accounts",
+    #"accounts",
     "forums",
+    "reviews",
     "general",
     "payments",
+    "moderation.apps.ModerationConfig",
 ]
 
 MIDDLEWARE = [
@@ -126,17 +128,17 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "home"        # after successful login
-LOGOUT_REDIRECT_URL = "home"       # after logout
-LOGIN_URL = "accounts:login"       # where @login_required sends users
-PASSWORD_CHANGE_REDIRECT_URL = 'accounts:password_change_done'
+LOGIN_REDIRECT_URL = "home"  # after successful login
+LOGOUT_REDIRECT_URL = "home"  # after logout
+LOGIN_URL = "accounts:login"  # where @login_required sends users
+PASSWORD_CHANGE_REDIRECT_URL = "accounts:password_change_done"
 
 
 from decouple import config
@@ -144,13 +146,13 @@ from decouple import config
 HOME_DIR = "http://127.0.0.1:8000/"
 
 # Stripe
-STRIPE_SECRET_KEY = config('stripe_test_api_secret_key', default='')
+STRIPE_SECRET_KEY = config("stripe_test_api_secret_key", default="")
 
-STRIPE_WEBHOOK_SECRET_KEY = config('stripe_webhook_secret_key', default='')
+STRIPE_WEBHOOK_SECRET_KEY = config("stripe_webhook_secret_key", default="")
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51SS2L12LulKl7K5WyksMW2rmoLMNnvzuYCwAheWuEnNLbO1T1NGfVbsx90WBEtFA3SDAOxb7xmSuvc68Jj5wuL0X00TyQCVU8u'
+STRIPE_PUBLISHABLE_KEY = "pk_test_51SS2L12LulKl7K5WyksMW2rmoLMNnvzuYCwAheWuEnNLbO1T1NGfVbsx90WBEtFA3SDAOxb7xmSuvc68Jj5wuL0X00TyQCVU8u"
 
-#Crispy Forms
+# Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
@@ -158,4 +160,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 AUTH_USER_MODEL = "accounts.base_user"
 
 
-FAKE_STRIPE_PURCHASES = config('stripe_fake_checkout',default='True')
+FAKE_STRIPE_PURCHASES = config("stripe_fake_checkout", default="True")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

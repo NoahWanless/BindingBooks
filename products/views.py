@@ -1,11 +1,41 @@
 from django.views.generic import DetailView, ListView
-from .models import products, product_review
+from .models import products
+from reviews.models import Review
+from general.models import Tag
 import json
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+User = get_user_model()
 
 class ProductListView(ListView):
     model = products
     template_name = "products/product_list.html"
     context_object_name = "products"
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q')
+        if q:
+            # filter by name, description, or tags (tags is JSONField, use icontains for sqlite fallback)
+            qs = qs.filter(
+                Q(product_name__icontains=q) |
+                Q(product_description__icontains=q) |
+                Q(product_tags__icontains=q)
+            )
+        
+        # Filter by tag if provided
+        tag_id = self.request.GET.get('tag')
+        if tag_id:
+            qs = qs.filter(product_tags_m2m__pk=tag_id).distinct()
+        
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q', '')
+        context['selected_tag'] = self.request.GET.get('tag', '')
+        context['tags'] = Tag.objects.all().order_by('name')
+        return context
 
 
 class ProductDetailView(DetailView):
@@ -15,17 +45,25 @@ class ProductDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['reviews'] = product_review.objects.filter(
-            product_being_reviewed=self.get_object()
-        ).order_by('-post_id')
-        context['jsinfo'] = json.dumps({'product_id':self.get_object().product_id,
-                                        'user_id':self.request.user.id,
-                                        'all_books':self.request.user.user_owned_books}) #sends json info to be used by js of user info
+        context['reviews'] = Review.objects.filter( #TODO this line might need to be fixed 
+            product_id=self.get_object()
+        ).order_by('-review_id')
+
+        # Only check owned products for authenticated users. If there is no
+        # authenticated user, don't try to query the user model (that would
+        # raise DoesNotExist when id is None).
+        display_book = True
+        request_user = getattr(self.request, 'user', None)
+        if request_user and getattr(request_user, 'is_authenticated', False):
+            try:
+                for book in request_user.user_owned_products.all():
+                    if book.product_id == self.get_object().product_id:
+                        display_book = False
+                        break
+            except Exception:
+                # If the relationship or user data is malformed, default
+                # to showing the purchase button rather than crashing the view.
+                display_book = True
+
+        context['display_book'] = display_book
         return context
-
-
-
-
-
-
-

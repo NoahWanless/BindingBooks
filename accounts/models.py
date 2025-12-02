@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from products.models import products
 
 # Custom user model
 FAVORITE_GENRES = [
@@ -18,7 +19,9 @@ FAVORITE_GENRES = [
 class base_user(AbstractUser):
     user_bio = models.TextField(blank=True)
     favorite_genre = models.CharField(max_length=50, choices=FAVORITE_GENRES, blank=True)
-    user_owned_books = models.JSONField(blank=True, default=list)
+    favorite_authors = models.JSONField(blank=True, default=list) # new CQ
+    user_owned_products = models.ManyToManyField(products)
+    user_tags = models.ManyToManyField('general.Tag', blank=True, related_name='users')
     is_user_a_test_user = models.BooleanField(default=False)
     
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)

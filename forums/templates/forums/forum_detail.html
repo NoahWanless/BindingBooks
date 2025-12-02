@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}
   {{ forum.forum_name }}| BindingBooks
 {% endblock %}
@@ -14,8 +13,6 @@
   </ul>
 {% endblock %}
 {% block content %}
-  <link rel="stylesheet" href="{% static 'forums/forums.css' %}" />
-
   {% include 'includes/product_sidebar.html' %}
   <p>{{ forum.forum_description }}</p>
   <p>Starts: {{ forum.start_date }}</p>
@@ -25,11 +22,13 @@
   <h2>Posts</h2>
   <ul>
     {% for p in posts %}
-      <li>
-        <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
-        <br />
-        {{ p.post_text }}
-      </li>
+      {% if p.approved == True %}
+        <li>
+          <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
+          <br />
+          {{ p.post_text }}
+        </li>
+      {% endif %}
     {% empty %}
       <li>No posts yet.</li>
     {% endfor %}
