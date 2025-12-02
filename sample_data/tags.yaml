@@ -1,0 +1,265 @@
+- model: general.tag
+  pk: 1
+  fields:
+    name: "fantasy"
+    slug: "fantasy"
+- model: general.tag
+  pk: 2
+  fields:
+    name: "classic"
+    slug: "classic"
+- model: general.tag
+  pk: 3
+  fields:
+    name: "science fiction"
+    slug: "science-fiction"
+- model: general.tag
+  pk: 4
+  fields:
+    name: "thriller"
+    slug: "thriller"
+- model: general.tag
+  pk: 5
+  fields:
+    name: "mystery"
+    slug: "mystery"
+- model: general.tag
+  pk: 6
+  fields:
+    name: "romance"
+    slug: "romance"
+- model: general.tag
+  pk: 7
+  fields:
+    name: "horror"
+    slug: "horror"
+- model: general.tag
+  pk: 8
+  fields:
+    name: "historical fiction"
+    slug: "historical-fiction"
+- model: general.tag
+  pk: 9
+  fields:
+    name: "young adult"
+    slug: "young-adult"
+- model: general.tag
+  pk: 10
+  fields:
+    name: "biography"
+    slug: "biography"
+- model: general.tag
+  pk: 11
+  fields:
+    name: "memoir"
+    slug: "memoir"
+- model: general.tag
+  pk: 12
+  fields:
+    name: "poetry"
+    slug: "poetry"
+- model: general.tag
+  pk: 13
+  fields:
+    name: "non-fiction"
+    slug: "non-fiction"
+- model: general.tag
+  pk: 14
+  fields:
+    name: "dystopian"
+    slug: "dystopian"
+- model: general.tag
+  pk: 15
+  fields:
+    name: "literary fiction"
+    slug: "literary-fiction"
+- model: general.tag
+  pk: 16
+  fields:
+    name: "graphic novel"
+    slug: "graphic-novel"
+- model: general.tag
+  pk: 17
+  fields:
+    name: "comic"
+    slug: "comic"
+- model: general.tag
+  pk: 18
+  fields:
+    name: "short stories"
+    slug: "short-stories"
+- model: general.tag
+  pk: 19
+  fields:
+    name: "epic fantasy"
+    slug: "epic-fantasy"
+- model: general.tag
+  pk: 20
+  fields:
+    name: "urban fantasy"
+    slug: "urban-fantasy"
+- model: general.tag
+  pk: 21
+  fields:
+    name: "steampunk"
+    slug: "steampunk"
+- model: general.tag
+  pk: 22
+  fields:
+    name: "cyberpunk"
+    slug: "cyberpunk"
+- model: general.tag
+  pk: 23
+  fields:
+    name: "space opera"
+    slug: "space-opera"
+- model: general.tag
+  pk: 24
+  fields:
+    name: "hard science fiction"
+    slug: "hard-science-fiction"
+- model: general.tag
+  pk: 25
+  fields:
+    name: "cozy mystery"
+    slug: "cozy-mystery"
+- model: general.tag
+  pk: 26
+  fields:
+    name: "police procedural"
+    slug: "police-procedural"
+- model: general.tag
+  pk: 27
+  fields:
+    name: "paranormal romance"
+    slug: "paranormal-romance"
+- model: general.tag
+  pk: 28
+  fields:
+    name: "contemporary romance"
+    slug: "contemporary-romance"
+- model: general.tag
+  pk: 29
+  fields:
+    name: "gothic"
+    slug: "gothic"
+- model: general.tag
+  pk: 30
+  fields:
+    name: "psychological thriller"
+    slug: "psychological-thriller"
+- model: general.tag
+  pk: 31
+  fields:
+    name: "true crime"
+    slug: "true-crime"
+- model: general.tag
+  pk: 32
+  fields:
+    name: "western"
+    slug: "western"
+- model: general.tag
+  pk: 33
+  fields:
+    name: "mythology"
+    slug: "mythology"
+- model: general.tag
+  pk: 34
+  fields:
+    name: "historical romance"
+    slug: "historical-romance"
+- model: general.tag
+  pk: 35
+  fields:
+    name: "coming of age"
+    slug: "coming-of-age"
+- model: general.tag
+  pk: 36
+  fields:
+    name: "children's"
+    slug: "childrens"
+- model: general.tag
+  pk: 37
+  fields:
+    name: "middle grade"
+    slug: "middle-grade"
+- model: general.tag
+  pk: 38
+  fields:
+    name: "self-help"
+    slug: "self-help"
+- model: general.tag
+  pk: 39
+  fields:
+    name: "philosophy"
+    slug: "philosophy"
+- model: general.tag
+  pk: 40
+  fields:
+    name: "religion & spirituality"
+    slug: "religion-spirituality"
+- model: general.tag
+  pk: 41
+  fields:
+    name: "travel"
+    slug: "travel"
+- model: general.tag
+  pk: 42
+  fields:
+    name: "cooking"
+    slug: "cooking"
+- model: general.tag
+  pk: 43
+  fields:
+    name: "art"
+    slug: "art"
+- model: general.tag
+  pk: 44
+  fields:
+    name: "alternate history"
+    slug: "alternate-history"
+- model: general.tag
+  pk: 45
+  fields:
+    name: "cli-fi (climate fiction)"
+    slug: "cli-fi-climate-fiction"
+- model: general.tag
+  pk: 46
+  fields:
+    name: "magical realism"
+    slug: "magical-realism"
+- model: general.tag
+  pk: 47
+  fields:
+    name: "speculative fiction"
+    slug: "speculative-fiction"
+- model: general.tag
+  pk: 48
+  fields:
+    name: "military fiction"
+    slug: "military-fiction"
+- model: general.tag
+  pk: 49
+  fields:
+    name: "action & adventure"
+    slug: "action-adventure"
+- model: general.tag
+  pk: 50
+  fields:
+    name: "technology"
+    slug: "technology"
+- model: general.tag
+  pk: 51
+  fields:
+    name: "programming"
+    slug: "programming"
+- model: general.tag
+  pk: 52
+  fields:
+    name: "educational"
+    slug: "educational"
+- model: general.tag
+  pk: 53
+  fields:
+    name: "fiction"
+    slug: "fiction"
