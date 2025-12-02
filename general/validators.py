@@ -39,12 +39,13 @@ class Validators():
         translation_table = dict.fromkeys(map(ord, '!,.'), None) 
         with open('static/profanity-list.txt') as f:
             bad_word_list = [line.strip() for line in f.readlines() if line.strip()]
+            bad_word_list = [word.lower() for word in bad_word_list]
 
 
         text = value.translate(translation_table) #this removes some puncuality
         list_of_words = text.split()
         for word in list_of_words:
-            if word in bad_word_list:
+            if word.lower() in bad_word_list:
                 raise ValidationError(_(f"You cant have bad words in your message"), code="invalid")
     
     #----returns all words that are flagged as profanity----#

@@ -45,6 +45,10 @@
       <li class="nav-item">
         <a href="{% url 'product_list' %}" class="nav-link px-2">Products</a>
       </li>
+
+      {% if request.user.is_superuser %}
+        <a href="{% url 'moderation_queue' %}" class='nav-link px-2'>Moderation Queue</a>
+      {% endif %}
     
       {% block extra_nav %}
       {% endblock %}
