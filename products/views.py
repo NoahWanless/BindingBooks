@@ -31,6 +31,8 @@ class ProductDetailView(DetailView):
 
         if display_book == False:
             context['display_book'] = False
+        else: 
+            context['display_book'] = True
         return context
 
 

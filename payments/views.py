@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import TemplateView
-
+from products.models import products
 
 #=============================
 #SuccessView:
@@ -15,10 +15,8 @@ class SuccessView(TemplateView):
             ui = self.kwargs["ui"] #user_id
             bi = self.kwargs["bi"] #book_id 
             current_user = get_object_or_404(User, id=ui)
-            json_data = current_user.user_owned_books
-            json_data.append({'book_id': bi})
-            current_user.user_owned_books = json_data
-            current_user.save(update_fields=['user_owned_books'])
+            book = get_object_or_404(products, product_id=bi)
+            current_user.user_owned_products.add(book)
             print('EVERYTHING WENT FINE, YIPPEE')
         return super().get(request, *args, **kwargs)
     
@@ -66,17 +64,14 @@ class CreateStripeCheckoutSessionView(View):
         else:
             current_user = request.user
 
-        #----checks if the person who is going to get the product already has it----#
-        #TODO
-        #TODO
-        #TODO
-        #TODO
         #----checks if we are doing a fake purchase----#
         if settings.FAKE_STRIPE_PURCHASES == 'True': 
+            print("Fake purchase")
             success_url = request.build_absolute_uri(
                 reverse("payments:success", kwargs={"ui": current_user.id, "bi": product.product_id}) #the payments is needed because it is in a namespaced url thingy 
             )
         else: #this is if we are doing real purchases, no user data is sent with the url
+            print("real purchase")
             success_url = request.build_absolute_uri(
                 reverse("payments:success_default")  
             )
@@ -129,14 +124,8 @@ class StripeWebhookView(View):
             product_id = session["metadata"]["product_id"]
             user_id = session["metadata"]["user_id"]
             current_user = get_object_or_404(User, id=user_id)
-            json_data = current_user.user_owned_books
-            #TODO add it so it checks if the current user already has the book or not 
-            #TODO
-            #TODO
-            json_data.append({'book_id': product_id})
-            current_user.user_owned_books = json_data
-            current_user.save(update_fields=['user_owned_books'])
-            
+            book = get_object_or_404(products, product_id=product_id)
+            current_user.user_owned_products.add(book)
         return HttpResponse(status=200)
 
 
