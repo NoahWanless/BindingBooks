@@ -1,99 +1,220 @@
-#NOT TESTED YET
+- model: products.products
+  pk: 101
+  fields:
+    product_stripe_id: ""
+    product_name: "The Rings of Saturn"
+    product_link: ""
+    product_description: "A hard science fiction novel exploring the mysteries of deep space travel and the isolation of the human soul."
+    product_price: 19.99
+    product_tags_m2m:
+      - 3   # Science Fiction
+      - 23  # Space Opera
+      - 24  # Hard Science Fiction
+      - 53  # Fiction
+    product_text: "The silence was the first thing to hit him, heavier than the G-force..."
+    product_images: ["https://cdn.mos.cms.futurecdn.net/7eRhvK4AtsdGPdTWbHBsJb.jpg"]
 
-## EXAMPLE PRODUCT
-#- model: products.products
-#  pk: 101
-#  fields:
-#    product_stripe_id: "stripe_prod_ABC123"
-#    product_name: "The Enchanted Marshlands"
-#    product_link: "https://yourwebsite.com/products/101"
-#    product_description: "A fantasy novel set in misty wetlands full of spirits and ancient secrets."
-#    product_price: 14.99
-#    product_tags:
-#      - "fantasy"
-#      - "novel"
-#      - "marsh"
-#    product_text: "Once upon a time in the endless marshlands..."
-#    product_images: []
-#
-#- model: products.products
-#  pk: 102
-#  fields:
-#    product_stripe_id: "stripe_prod_ABC1234"
-#    product_name: "The Enchanted Marshlands1"
-#    product_link: "https://yourwebsite.com/products/102"
-#    product_description: "A fantasy novel set in misty wetlands full of spirits and ancient secrets."
-#    product_price: 14.99
-#    product_tags:
-#      - "fantasy"
-#      - "novel"
-#      - "marsh"
-#    product_text: "Once upon a time in the endless marshlands..."
-#    product_images: []
-#
-#- model: products.products
-#  pk: 103
-#  fields:
-#    product_stripe_id: "stripe_prod_ABC12345"
-#    product_name: "The Enchanted Marshlands2"
-#    product_link: "https://yourwebsite.com/products/103"
-#    product_description: "A fantasy novel set in misty wetlands full of spirits and ancient secrets."
-#    product_price: 14.99
-#    product_tags:
-#      - "fantasy"
-#      - "novel"
-#      - "marsh"
-#    product_text: "Once upon a time in the endless marshlands..."
-#    product_images: []
-#
-#- model: products.products
-#  pk: 104
-#  fields:
-#    product_stripe_id: "stripe_prod_ABC123456"
-#    product_name: "The Enchanted Marshlands3"
-#    product_link: "https://yourwebsite.com/products/104"
-#    product_description: "A fantasy novel set in misty wetlands full of spirits and ancient secrets."
-#    product_price: 14.99
-#    product_tags:
-#      - "fantasy"
-#      - "novel"
-#      - "marsh"
-#    product_text: "Once upon a time in the endless marshlands..."
-#    product_images: []
-#
-#
-## EXAMPLE PRODUCT REVIEW
-## (author is null, allowed because FK is null=True)
-#- model: products.product_review
-#  pk: 101
-#  fields:
-#    author: null
-#    product_being_reviewed: 101
-#    post_text: "A vivid and atmospheric read. Loved the worldbuilding!"
-#    post_reactions: []
-#
-#
-## BLANK TEMPLATES
-#
-## TEMPLATE: PRODUCT
-## - model: products.products
-##   pk: X
-##   fields:
-##     product_stripe_id: ""
-##     product_name: ""
-##     product_link: ""
-##     product_description: ""
-##     product_price: 0.00
-##     product_tags: []
-##     product_text: ""
-#     product_images: []
+- model: products.products
+  pk: 102
+  fields:
+    product_stripe_id: ""
+    product_name: "Out of Their Minds"
+    product_link: ""
+    product_description: "A comprehensive guide to building scalable and maintainable software architectures using Python."
+    product_price: 45.00
+    product_tags_m2m:
+      - 13  # Non-fiction
+      - 50  # Technology
+      - 51  # Programming
+      - 52  # Educational
+    product_text: "One of the most revered sci-fi books."
+    product_images: ["https://i2.wp.com/signalsfromtheedge.org/wp-content/uploads/2021/12/simak.jpg?resize=297%2C500&ssl=1"]
 
+- model: products.products
+  pk: 103
+  fields:
+    product_stripe_id: ""
+    product_name: "Nexus"
+    product_link: ""
+    product_description: "A whimsical fantasy tale about a young apprentice who accidentally unleashes a plague of clockwork beetles."
+    product_price: 14.99
+    product_tags_m2m:
+      - 1   # Fantasy
+      - 21  # Steampunk
+      - 49  # Action & Adventure
+      - 53  # Fiction
+    product_text: "Explore a wonderful world of sci-fi creativity in Nexus."
+    product_images: ["https://bookcoverhub.com/wp-content/uploads/elementor/thumbs/Fantasy-Book-Cover-Designers-Book-cover-designer-Book-Cover-Designers-ebook-cover-romance-book-covers-kindle-book-cover-design-ebook-cover-art-custom-book-covers-design-com-2-qtvdzvt0ee1w4y2vn4d0wgb50d0h4osqvu1jxbrz1k.jpg"]
 
-# TEMPLATE: PRODUCT REVIEW
-# - model: products.product_review
-#   pk: X
-#   fields:
-#     author: null                # or user pk
-#     product_being_reviewed: X   # must reference product pk
-#     post_text: ""
-#     post_reactions: []
+- model: products.products
+  pk: 104
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Pride and Prejudice"
+    product_link: "https://openlibrary.org/works/OL66554W"
+    product_description: "A book by Jane Austen"
+    product_price: 30.92
+    product_tags_m2m:
+      - 2   # Classic
+      - 6   # Romance
+      - 8   # Historical Fiction
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/14348537-L.jpg"
+
+- model: products.products
+  pk: 105
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Alice's Adventures in Wonderland"
+    product_link: "https://openlibrary.org/works/OL138052W"
+    product_description: "A book by Lewis Carroll"
+    product_price: 29.66
+    product_tags_m2m:
+      - 1   # Fantasy
+      - 2   # Classic
+      - 36  # Children's
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/10527843-L.jpg"
+
+- model: products.products
+  pk: 106
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "The Picture of Dorian Gray"
+    product_link: "https://openlibrary.org/works/OL8193416W"
+    product_description: "A book by Oscar Wilde"
+    product_price: 29.22
+    product_tags_m2m:
+      - 2   # Classic
+      - 29  # Gothic
+      - 39  # Philosophy
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/14314858-L.jpg"
+
+- model: products.products
+  pk: 107
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Wuthering Heights"
+    product_link: "https://openlibrary.org/works/OL21177W"
+    product_description: "A book by Emily Brontë"
+    product_price: 28.94
+    product_tags_m2m:
+      - 2   # Classic
+      - 6   # Romance
+      - 29  # Gothic
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/12818862-L.jpg"
+
+- model: products.products
+  pk: 108
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "A Christmas Carol"
+    product_link: "https://openlibrary.org/works/OL8193497W"
+    product_description: "A book by Charles Dickens"
+    product_price: 34.63
+    product_tags_m2m:
+      - 1   # Fantasy
+      - 2   # Classic
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/13299222-L.jpg"
+
+- model: products.products
+  pk: 109
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Adventures of Huckleberry Finn"
+    product_link: "https://openlibrary.org/works/OL53908W"
+    product_description: "A book by Mark Twain"
+    product_price: 17.04
+    product_tags_m2m:
+      - 2   # Classic
+      - 35  # Coming of Age
+      - 49  # Action & Adventure
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/8157718-L.jpg"
+
+- model: products.products
+  pk: 110
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Emma"
+    product_link: "https://openlibrary.org/works/OL66513W"
+    product_description: "A book by Jane Austen"
+    product_price: 28.01
+    product_tags_m2m:
+      - 2   # Classic
+      - 6   # Romance
+      - 8   # Historical Fiction
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/9278312-L.jpg"
+
+- model: products.products
+  pk: 111
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Oliver Twist"
+    product_link: "https://openlibrary.org/works/OL8193478W"
+    product_description: "A book by Charles Dickens"
+    product_price: 15.35
+    product_tags_m2m:
+      - 2   # Classic
+      - 8   # Historical Fiction
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/13300802-L.jpg"
+
+- model: products.products
+  pk: 112
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Frankenstein or The Modern Prometheus"
+    product_link: "https://openlibrary.org/works/OL450063W"
+    product_description: "A book by Mary Shelley"
+    product_price: 29.85
+    product_tags_m2m:
+      - 2   # Classic
+      - 3   # Science Fiction
+      - 7   # Horror
+      - 29  # Gothic
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/12356249-L.jpg"
+
+- model: products.products
+  pk: 113
+  fields:
+    product_stripe_id: "PLACE_HOLDER"
+    product_name: "Hamlet"
+    product_link: "https://openlibrary.org/works/OL9170454W"
+    product_description: "A book by William Shakespeare"
+    product_price: 21.73
+    product_tags_m2m:
+      - 2   # Classic
+      - 15  # Literary Fiction
+      - 53  # Fiction
+    product_text: ""
+    product_images:
+      - "https://covers.openlibrary.org/b/id/8281954-L.jpg"

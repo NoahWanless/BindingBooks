@@ -45,6 +45,20 @@ def create_post(request, forum_id):
             print("we did not find a bad word and have sent the data to the database")
             return redirect("forum_detail", forum_id=forum_id)
         except ValidationError as ve:
+            print("Profanity detected — sending post to moderation queue.")
+
+            # Mark post as NOT approved
+            new_post.approved = False
+            new_post.save()   # Needed so moderation queue gets a valid post_id
+
+            # Do NOT return them to the form — instead show a "pending" screen or redirect
+            return render(
+                request,
+                "forums/pending_moderation.html",
+                {"forum": forum, "post": new_post},
+            )
+            
+            """
             print("ERROR ERROR WE FOUND A BAD WORD")
             #!MAKE IT SO IT TRYS TO RESUBMIT THE FORM, USE THE FOLLOWING WEBSTIE:
             # https://forum.djangoproject.com/t/form-validationerror-not-showing-in-form/33363
@@ -66,6 +80,7 @@ def create_post(request, forum_id):
         # ___________________________________#
         # print("we did not find a bad word and have sent the data to the database")
         # return redirect("forum_detail", forum_id=forum_id)
+        """
     elif request.method == "GET":
         #!add here contex for if we send a string maybe
         return render(request, "forums/create_post.html", {"forum": forum})

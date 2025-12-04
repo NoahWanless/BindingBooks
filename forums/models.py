@@ -24,6 +24,7 @@ class forums(models.Model):
         User, null=True, on_delete=models.SET_NULL
     )  # changed to forum lead for clarity
     forum_tags = models.JSONField(default=list)
+    forum_tags_m2m = models.ManyToManyField('general.Tag', blank=True, related_name='forums')
     start_date = models.DateField()
     meeting_day = models.CharField(
         max_length=10,

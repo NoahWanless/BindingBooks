@@ -1,0 +1,11 @@
+<h1>Review Item</h1>
+
+<p>{{ item.content_object }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <textarea name="reason" placeholder="Reason if rejected"></textarea><br>
+
+  <button name="approve">Approve</button>
+  <button name="reject">Reject</button>
+</form>

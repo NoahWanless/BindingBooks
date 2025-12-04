@@ -5,4 +5,3 @@ class ModerationConfig(AppConfig):
 
     def ready(self):
         import moderation.signals
-

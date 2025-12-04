@@ -15,20 +15,24 @@
       <h1 class="mb-1">{{ product.product_name }}</h1>
       <p class="text-muted mb-0">Price: ${{ product.product_price|floatformat:2 }}</p>
     </div>
+    {% if display_book == True%}
     <form action="{% url 'payments:create-checkout-session' product.product_id %}" method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-primary" id='checkoutbutton'>Checkout</button>
     </form>
+    {% else %}
+  <!-- this is where whatever display you want for telling the user that they cant purchase this book because they already own it -->
+    {% endif %}
   </div>
 
   <p>{{ product.product_description }}</p>
 
   <section class="mt-4">
     <h2 class="h5">Tags</h2>
-    {% if product.product_tags %}
+    {% if product.product_tags_m2m.all %}
       <div>
-        {% for tag in product.product_tags %}
-          <span class="badge text-bg-secondary me-1 mb-1">{{ tag }}</span>
+        {% for tag in product.product_tags_m2m.all %}
+          <span class="badge text-bg-secondary me-1 mb-1">{{ tag.name }}</span>
         {% endfor %}
       </div>
     {% else %}
@@ -86,5 +90,3 @@
 </body>
 
 {% endblock content %}
-
-

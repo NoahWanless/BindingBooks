@@ -28,4 +28,3 @@ def review_item(request, pk):
     
 
     return render(request, "moderation/review.html", {"item": item})
-

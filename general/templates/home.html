@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 
 {% block nav_home_active %} active{% endblock nav_home_active %}
-
 {% block content %}
+ <h2>Your Favorite Books</h2>
+
+{% if favorites %}
+  <div class="row">
+    {% for book in favorites %}
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <img src="{{ book.product_images.0 }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.product_name }}</h5>
+            <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
+            <a href="{% url 'products:product_details' book.pk %}" class="btn btn-primary">View</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>You haven't favorited any books yet.</p>
+{% endif %}
 {% endblock content %}
