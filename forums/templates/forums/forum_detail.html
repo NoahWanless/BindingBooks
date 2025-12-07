@@ -13,21 +13,39 @@
   </ul>
 {% endblock %}
 {% block content %}
-  {% include 'includes/product_sidebar.html' %}
-  <p>{{ forum.forum_description }}</p>
-  <p>Starts: {{ forum.start_date }}</p>
-  <p>Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
-  <p>Forum lead: {{ forum.forum_lead.username|default:'Unknown owner' }}</p>
+  <div class="z-3 position-fixed container rounded">
+    {% include 'includes/product_sidebar.html' %}
+  </div>
 
-  <h2>Posts</h2>
-  <ul>
+  <div class="container row justify-content-center">
+    <div class="row justify-content-center">
+      <h1 class="display-4 mt-3 text-white border rounded bg-secondary" style="width: fit-content;">{{forum.forum_name}}</h1>
+    </div>
+  </div>
+
+
+  <div class="container bg-secondary opacity-75 rounded text-white justify-content-center" style="width: fit-content;">
+    <div class="text-center">
+      <p class="fw-bold">{{ forum.forum_description }}</p>
+      <p class="fw-bold">Starts: {{ forum.start_date }}</p>
+      <p class="fw-bold">Discussion time: {{ forum.meeting_day }} at {{ forum.meeting_time }}</p>
+      <p class="fw-bold">Forum lead: {{ forum.forum_lead.username|default:'Unknown owner' }}</p>
+    </div>
+  </div>
+  <h2 class = "text-center">Posts</h2>
+  <ul style="list-style-type: none;">
     {% for p in posts %}
       {% if p.approved == True %}
+      <div class="container-md bg-secondary opacity-75 rounded col-7">
         <li>
-          <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: view post</a>
+          <a href="{% url 'post_detail' p.post_id %}">{{ p.author.username|default:'Unknown author' }}: Comment</a>
           <br />
-          {{ p.post_text }}
+          <p class="text-white">
+            {{ p.post_text }}
+          </p>
+          
         </li>
+      </div>
       {% endif %}
     {% empty %}
       <li>No posts yet.</li>

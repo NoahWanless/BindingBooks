@@ -1,9 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.product_name }} | BindingBooks{% endblock title %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Binding Books</title>
 </head>
 <body>
-    <p>Purchase SUCCESS</p>
+    <p class="text-center fw-bold">Purchase SUCCESS</p>
 
 </body>
+
+{% endblock content %}
