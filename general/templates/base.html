@@ -48,10 +48,11 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'home' %}">Home</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'forum_list' %}">Forums</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'review_create' %}">Write a Review</a></li>
                         {% endif %}
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products:product_list' %}">Products</a></li>
                         {% if request.user.is_superuser %}
-                          <a href="{% url 'moderation_queue' %}" class='nav-link px-2'>Moderation Queue</a>
+                          <li class="nav-item px-lg-4"><a href="{% url 'moderation_queue' %}" class='nav-link px-2'>Moderation Queue</a></li>
                         {% endif %}
                         {% block extra_nav %}
 

@@ -7,7 +7,11 @@
   </li>
 {% endblock %}
 {% block content %}
-  {% include 'includes/product_sidebar.html' with forum=forum %}
+  
+  <div class="z-3 position-fixed container rounded">
+    {% include 'includes/product_sidebar.html' with forum=forum %}
+  </div>
+
   <form method="POST">
     {% csrf_token %}
     {% if text_entry %}

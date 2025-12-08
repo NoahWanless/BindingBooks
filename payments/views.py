@@ -133,7 +133,28 @@ class StripeWebhookView(View):
 #StripeWebhookDeployed:
 #this will be the view which is used when a webhook response is sent to the deployed website from stripe, and the model will be updated
 #=============================
-#TODO
-#TODO
-#TODO
-#TODO
+#!UNTESTED CODE
+@method_decorator(csrf_exempt,name='dispatch')
+class StripeWebhookViewProduction(View):
+    def post(self,request,format=None):
+        payload=request.body
+        endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_KEY
+        sig_header=request.META["HTTP_STRIPE_SIGNATURE"]
+        event = None
+
+        try:
+            event = stripe.Webhook.construct_event(payload,sig_header,endpoint_secret)
+        except ValueError as e:
+            return HttpResponse(status=400)
+        except stripe.error.SignatureVerificationError as e:
+            return HttpResponse(status=400)
+        
+        if event["type"] == "checkout.session.completed":
+            print("Payment successful")
+            session = event["data"]["object"]
+            product_id = session["metadata"]["product_id"]
+            user_id = session["metadata"]["user_id"]
+            current_user = get_object_or_404(User, id=user_id)
+            book = get_object_or_404(products, product_id=product_id)
+            current_user.user_owned_products.add(book)
+        return HttpResponse(status=200)
