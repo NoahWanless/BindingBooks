@@ -13,7 +13,9 @@ class HomePageView(TemplateView):
 
         if user.is_authenticated:
             context["favorites"] = user.favorite_books.all()
+            context["owned_books"] = user.user_owned_products.all()
         else:
             context["favorites"] = []
+            context["owned_books"] = []
 
         return context
