@@ -7,9 +7,9 @@
     <li class="nav-item px-lg-4">
       <a class="nav-link text-uppercase" href="{% url 'create_forum' %}">+ Create New Forum</a>
     </li>
-    <li class="nav-item px-lg-4">
+    {% comment %} <li class="nav-item px-lg-4">
       <a class="nav-link text-uppercase" href="{% url 'review_create' %}">Write a Review</a>
-    </li>
+    </li> {% endcomment %}
   {% endif %}
 {% endblock %}
 {% block content %}
