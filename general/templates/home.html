@@ -3,12 +3,18 @@
 {% block nav_home_active %} active{% endblock nav_home_active %}
 {% block content %}
  {% if has_genre_recs %}
- <h2>Books in your favorite genre: {{ favorite_genre_label }}</h2>
+ <div class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title mb-0">Books in your favorite genre: {{ favorite_genre_label }}</h2>
+    </div>
+ </div>
  <div class="row">
    {% for book in genre_recs %}
      <div class="col-md-3">
        <div class="card mb-3">
-         <img src="{{ book.product_images.0 }}" class="card-img-top">
+         <div class="p-2 bg-white">
+            <img src="{{ book.product_images.0 }}" class="card-img-top" alt="{{ book.product_name }}">
+         </div>
          <div class="card-body">
            <h5 class="card-title">{{ book.product_name }}</h5>
            <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
@@ -22,12 +28,18 @@
  {% endif %}
 
  {% if recent_books %}
- <h2>New &amp; Noteworthy</h2>
+<div class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title mb-0">New &amp; Noteworthy</h2>
+    </div>
+</div>
  <div class="row">
    {% for book in recent_books %}
      <div class="col-md-3">
        <div class="card mb-3">
-         <img src="{{ book.product_images.0 }}" class="card-img-top">
+         <div class="p-2 bg-white">
+            <img src="{{ book.product_images.0 }}" class="card-img-top" alt="{{ book.product_name }}">
+         </div>
          <div class="card-body">
            <h5 class="card-title">{{ book.product_name }}</h5>
            <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
@@ -40,14 +52,20 @@
  <br>
  {% endif %}
 
- <h2>Your Favorite Books</h2>
+ <div class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title mb-0">Your Favorite Books</h2>
+    </div>
+ </div>
 
 {% if favorites %}
   <div class="row">
     {% for book in favorites %}
       <div class="col-md-3">
         <div class="card mb-3">
-          <img src="{{ book.product_images.0 }}" class="card-img-top">
+         <div class="p-2 bg-white">
+            <img src="{{ book.product_images.0 }}" class="card-img-top" alt="{{ book.product_name }}">
+         </div>
           <div class="card-body">
             <h5 class="card-title">{{ book.product_name }}</h5>
             <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
@@ -61,13 +79,19 @@
   <p>You haven't favorited any books yet.</p>
 {% endif %}
 <br>
-<h2>Your Books</h2>
+<div class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title mb-0">Your Books</h2>
+    </div>
+</div>
 {% if owned_books %}
   <div class="row">
     {% for book in owned_books %}
       <div class="col-md-3">
         <div class="card mb-3">
-          <img src="{{ book.product_images.0 }}" class="card-img-top">
+         <div class="p-2 bg-white">
+            <img src="{{ book.product_images.0 }}" class="card-img-top" alt="{{ book.product_name }}">
+         </div>
           <div class="card-body">
             <h5 class="card-title">{{ book.product_name }}</h5>
             <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
