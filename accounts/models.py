@@ -26,6 +26,8 @@ class base_user(AbstractUser):
     
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
+    favorite_books = models.ManyToManyField(products, blank=True, related_name='favorited_by')
+
     @property
     def base_user(self):
         return self

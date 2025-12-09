@@ -7,21 +7,42 @@
     <li class="nav-item px-lg-4">
       <a class="nav-link text-uppercase" href="{% url 'create_forum' %}">+ Create New Forum</a>
     </li>
-    <li class="nav-item px-lg-4">
-      <a class="nav-link text-uppercase" href="{% url 'review_create' %}">Write a Review</a>
-    </li>
   {% endif %}
 {% endblock %}
 {% block content %}
-  <ul>
+<div class="container mt-4">
+  <div class="row">
     {% for f in forums %}
-      <li>
-        <a href="{% url 'forum_detail' f.forum_id %}">{{ f.forum_name }}</a><br />
-        Lead: {{ f.forum_lead.username|default:'Unknown lead' }}<br />
-        Meets: {{ f.meeting_day }} at {{ f.meeting_time }}
-      </li>
+      <div class="col-md-6 col-lg-4 mb-4">
+        
+        <div class="card h-100 shadow-sm border-0" style="background-color: #ffffff;">
+          
+          <div class="card-header border-0" style="background-color: #ffffff;">
+            <h5 class="my-0 font-weight-normal">
+              <a href="{% url 'forum_detail' f.forum_id %}" class="text-decoration-none text-dark">
+                {{ f.forum_name }}
+              </a>
+            </h5>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text text-dark">
+              <strong>Lead:</strong> {{ f.forum_lead.username|default:'Unknown lead' }}<br>
+              <strong>Meets:</strong> {{ f.meeting_day }} at {{ f.meeting_time }}
+            </p>
+            
+            <a href="{% url 'forum_detail' f.forum_id %}" class="btn btn-primary btn-sm">
+              Visit Forum
+            </a>
+          </div>
+
+        </div>
+      </div>
     {% empty %}
-      <li>No forums yet.</li>
+      <div class="col-12">
+        <div class="alert alert-info">No forums have been created yet.</div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
+</div>
 {% endblock %}

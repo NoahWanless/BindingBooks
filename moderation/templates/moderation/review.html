@@ -1,11 +1,21 @@
-<h1>Review Item</h1>
+{%extends 'base.html'%}
+{% block title %}
+  Post Review | BindingBooks
+{% endblock %}
+{% block extra_nav %}
 
-<p>{{ item.content_object }}</p>
+{% endblock %}
 
-<form method="post">
-  {% csrf_token %}
-  <textarea name="reason" placeholder="Reason if rejected"></textarea><br>
+{% block content %}
+  <h1>Review Item</h1>
 
-  <button name="approve">Approve</button>
-  <button name="reject">Reject</button>
-</form>
+  <p>{{ item.content_object }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <textarea name="reason" placeholder="Reason if rejected"></textarea><br>
+
+    <button name="approve">Approve</button>
+    <button name="reject">Reject</button>
+  </form>
+{%endblock%}

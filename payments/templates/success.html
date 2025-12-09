@@ -2,8 +2,63 @@
 <html lang="en">
 <head>
     <title>Binding Books</title>
+    <style>
+        body {
+            background-color: #f6efe7; /* soft tan */
+            font-family: "Georgia", serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #fffaf3; /* light parchment */
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #5a3e2b;  /* deep brown */
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        p {
+            color: #6b4a32;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #c8a57e;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s ease;
+        }
+
+        a:hover {
+            background-color: #b48e6a;
+        }
+    </style>
 </head>
 <body>
-    <p>Purchase SUCCESS</p>
+    <div class="container">
+        <h1>Purchase Successful!</h1>
+        <p>Your purchase was successful!</p>
+        <p>Thank you for shopping with Binding Books!</p>
 
+        <a href="/products/">Back to Products</a>
+    </div>
 </body>
+</html>

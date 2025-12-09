@@ -11,8 +11,16 @@ def forum_list(request):
 
 def forum_detail(request, forum_id):
     forum = get_object_or_404(forums, pk=forum_id)
-    posts = forum.posts.filter(approved=True)  # shows only this forums posts
-    return render(request, "forums/forum_detail.html", {"forum": forum, "posts": posts})
+    posts = forum.posts.filter(approved=True)
+    
+    # Get the product associated with this forum
+    product = forum.product if hasattr(forum, 'product') else None
+    
+    return render(request, "forums/forum_detail.html", {
+        "forum": forum, 
+        "posts": posts,
+        "product": product
+    })
 
 
 def post_detail(request, post_id):

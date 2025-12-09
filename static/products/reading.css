@@ -1,0 +1,18 @@
+.text-container-special{
+    /* word-wrap: break-word; /* or overflow-wrap: break-word; */
+    overflow: hidden;
+    background-color: #d43219;
+    padding: 20px; 
+    
+}
+
+#main-text-container{
+    overflow: hidden;
+    background-color: #d43219;
+    padding: 20px;    
+}
+
+.book-title{
+    background-color: #d43219
+    
+}

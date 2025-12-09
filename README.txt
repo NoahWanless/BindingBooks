@@ -49,3 +49,8 @@ to be used for sharing secret key
 
 
 pip install model-bakery
+
+
+
+
+ada stuff, styling fixing the stuff on the products move the footer to the actual bottom of the screen for forum 
