@@ -97,7 +97,7 @@ class BookReadingView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) #gets the book itself
         request_user = getattr(self.request, 'user', None) #gets current user
-        display_book = True #defailt assume the user donesnt have the books #!FOR TESTING ONLY AT THE MOMENT SO I DONT HAVE TO GO AND BUY BOOKS TO VIEW THEM
+        display_book = False #defailt assume the user donesnt have the books #!FOR TESTING ONLY AT THE MOMENT SO I DONT HAVE TO GO AND BUY BOOKS TO VIEW THEM
         if request_user and getattr(request_user, 'is_authenticated', False): 
             try:
                 for book in request_user.user_owned_products.all(): #checks if book is in the list

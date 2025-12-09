@@ -95,7 +95,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ book.product_name }}</h5>
             <p class="card-text">{{ book.product_description|truncatechars:80 }}</p>
-            <a href="{% url 'products:product_details' book.pk %}" class="btn btn-primary">View</a>
+            <a href="{% url 'products:book_view' book.pk %}" class="btn btn-primary">Read</a>
           </div>
         </div>
       </div>
