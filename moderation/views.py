@@ -14,7 +14,7 @@ def review_item(request, pk):
     item = get_object_or_404(ModerationQueue, pk=pk)
 
     if request.method == "POST":
-        if "approve" in request.POST:
+        if "approve" in request.POST: #THIS ISNT WORKING
             item.status = "approved"
             item.content_object.approved = True
             item.content_object.save()
