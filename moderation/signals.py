@@ -8,8 +8,12 @@ from .models import ModerationQueue
 @receiver(post_save, sender=forum_post)
 def add_post_to_moderation(sender, instance, created, **kwargs):
     if created:
+        status = "pending"
+        if instance.approved==True:
+            status = "approved"
+            
         ModerationQueue.objects.create(
             content_type=ContentType.objects.get_for_model(forum_post),
             object_id=instance.post_id,
-            status='pending'
+            status=status    # 'pending'
         )
