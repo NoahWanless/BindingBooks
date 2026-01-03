@@ -1,5 +1,9 @@
 #################################### Project Overview: ####################################
 
+!Note! This is a copy of the orignal repo that was held under one of my teammates accounts, I simply made a copy here for easier personal access.
+To see the orginal go here:
+https://github.com/SBFlying1/BindingBooks
+
 The Project goal was to create a service that facilitates the purchase, reading, and review of books, 
 all the while allowing for safe and fun community interaction.
 
